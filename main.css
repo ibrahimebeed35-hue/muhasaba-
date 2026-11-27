@@ -1344,3 +1344,14 @@ body {
 .mh-screenin {
   max-width: 76px;
 }
+.mh-tafsir-line {
+  margin: 2px 0 12px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #4a3520;
+}
+.mh-tafsir-note {
+  width: 100%;
+  resize: vertical;
+  font-family: inherit;
+}

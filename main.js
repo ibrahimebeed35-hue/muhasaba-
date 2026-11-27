@@ -14389,9 +14389,13 @@ Error generating stack: ` + i.message + `
     // تُلحق في النهاية فقط (مواضع ٢٠–٣٩): البنود الأربعة لكل فرض
     ...PRAYER_EXTRA_HABITS,
     // الموضع ٤٠
-    { id: "wird_mutlaq", label: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 \u062E\u0644\u0627\u0644 \u0627\u0644\u064A\u0648\u0645", hint: "\u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0627\u0633\u0645 \u0644\u0641\u062A\u062D \u0627\u0644\u0648\u0631\u062F \u0648\u0627\u0644\u0639\u062F\u0651", group: "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" },
+    { id: "wird_mutlaq", label: "\u0648\u0631\u062F \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0645\u062D\u062F\u062F\u0629", hint: "\u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0627\u0633\u0645 \u0644\u0641\u062A\u062D \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0648\u0627\u0644\u0639\u062F\u0651", group: "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" },
     // الموضع ٤١
-    { id: "adhkar_nawm", label: "\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0646\u0648\u0645", hint: "\u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0627\u0633\u0645 \u0644\u0641\u062A\u062D \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0648\u0627\u0644\u0639\u062F\u0651", group: "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" }
+    { id: "adhkar_nawm", label: "\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0646\u0648\u0645", hint: "\u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0627\u0633\u0645 \u0644\u0641\u062A\u062D \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0648\u0627\u0644\u0639\u062F\u0651", group: "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" },
+    // الموضع ٤٢
+    { id: "wird_hurr", label: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642", hint: "\u0627\u0643\u062A\u0628\u064A \u0639\u062F\u062F \u0645\u0627 \u0630\u0643\u0631\u062A\u0650\u0647 \u0627\u0644\u064A\u0648\u0645\u060C \u0628\u0644\u0627 \u0647\u062F\u0641 \u0645\u062D\u062F\u062F", group: "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" },
+    // الموضع ٤٣
+    { id: "wird_tafsir", label: "\u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631", hint: "\u0646\u0635\u0641 \u062C\u0632\u0621 \u064A\u0648\u0645\u064A\u064B\u0627 \u0645\u0646 \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0645\u064A\u0633\u0651\u0631", group: "\u0627\u0644\u0642\u0631\u0622\u0646" }
   ];
   var CHECK_IDS = CHECK_HABITS.map((h) => h.id);
   var OLD_IDS = ["fajr", "dhuhr", "asr", "maghrib", "isha", "sunnah_fajr", "sunnah_dhuhr", "duha", "witr", "quran", "fast", "adhkar_sabah", "adhkar_masaa"];
@@ -14411,7 +14415,7 @@ Error generating stack: ` + i.message + `
     return CHECK_IDS.map((id2) => String(st2[id2] || 0)).join("") + "," + String(istighfar || 0);
   }
   var V5_EPOCH = "2026-11-27";
-  var V5_IDS = /* @__PURE__ */ new Set([...PRAYER_EXTRA_HABITS.map((h) => h.id), "wird_mutlaq", "adhkar_nawm"]);
+  var V5_IDS = /* @__PURE__ */ new Set([...PRAYER_EXTRA_HABITS.map((h) => h.id), "wird_mutlaq", "adhkar_nawm", "wird_hurr", "wird_tafsir"]);
   function applicable(weekday, day) {
     const isFast = weekday === 1 || weekday === 4;
     return CHECK_IDS.filter((id2) => (id2 !== "fast" || isFast) && (!V5_IDS.has(id2) || day >= V5_EPOCH));
@@ -14451,6 +14455,70 @@ Error generating stack: ` + i.message + `
   var QADA_CHEERS = ["\u0644\u0627 \u0644\u0648\u0645 \u0639\u0644\u064A\u0643\u0650 \u0623\u0628\u062F\u064B\u0627 \u2014 \u062A\u062F\u0627\u0631\u0643\u0650\u0647\u0627 \u062E\u064A\u0631 \u0645\u0646 \u062A\u0631\u0643\u0647\u0627\u060C \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u{1F90D}", "\u0631\u062D\u0645\u0629 \u0627\u0644\u0644\u0647 \u0623\u0648\u0633\u0639 \u0645\u0646 \u0643\u0644 \u0641\u0627\u0626\u062A\u060C \u0648\u0642\u0636\u0627\u0624\u0643\u0650 \u0645\u0633\u0624\u0648\u0644\u064A\u0629 \u062C\u0645\u064A\u0644\u0629 \u{1F33F}", "\u0645\u0627 \u062F\u0627\u0645 \u0628\u0627\u0628 \u0627\u0644\u062A\u0648\u0628\u0629 \u0645\u0641\u062A\u0648\u062D\u064B\u0627\u060C \u0641\u0623\u0646\u062A\u0650 \u0639\u0644\u0649 \u0627\u0644\u0637\u0631\u064A\u0642\u060C \u0643\u0645\u0651\u0644\u064A \u0628\u0631\u0627\u062D\u0629 \u{1F90D}", "\u0627\u0644\u0644\u0647 \u064A\u062D\u0628 \u0627\u0644\u062A\u0648\u0651\u0627\u0628\u064A\u0646 \u2014 \u0648\u0642\u0636\u0627\u0624\u0643\u0650 \u0639\u0648\u062F\u064C \u0645\u062D\u0628\u0648\u0628 \u{1F319}", "\u0644\u0627 \u062A\u0642\u0633\u064A \u0639\u0644\u0649 \u0646\u0641\u0633\u0643\u0650\u061B \u0627\u0644\u0645\u0647\u0645 \u0623\u0646\u0647\u0627 \u0635\u064F\u0644\u0651\u064A\u062A\u060C \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u2728"];
   var ONTIME_CHEERS = ["\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627\u060C \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647 \u{1F54C} \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647", "\u0635\u0644\u0627\u0629 \u0641\u064A \u0648\u0642\u062A\u0647\u0627 \u2014 \u0645\u0646 \u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u{1F54C}", "\u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u0635\u0644\u0627\u0629 \u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627 \u062A\u062C\u0645\u0651\u0644 \u064A\u0648\u0645\u0643\u0650 \u0643\u0644\u0647 \u{1F90D}"];
   var DAILY_MSGS = ["\xAB\u0648\u064E\u0645\u064E\u0646 \u064A\u064E\u062A\u064E\u0651\u0642\u0650 \u0627\u0644\u0644\u064E\u0651\u0647\u064E \u064A\u064E\u062C\u0652\u0639\u064E\u0644 \u0644\u064E\u0651\u0647\u064F \u0645\u064E\u062E\u0652\u0631\u064E\u062C\u064B\u0627\xBB \u2014 \u064A\u0648\u0645\u0643\u0650 \u0628\u062F\u0627\u064A\u0629 \u062C\u062F\u064A\u062F\u0629 \u{1F90D}", "\u0635\u0641\u062D\u0629 \u0628\u064A\u0636\u0627\u0621 \u0648\u0642\u0644\u0628 \u0635\u0627\u0641\u064D\u060C \u0627\u0628\u062F\u0626\u064A \u0628\u0633\u0645 \u0627\u0644\u0644\u0647 \u{1F33F}", "\u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u0623\u062F\u0648\u0645\u0647\u0627 \u0648\u0625\u0646 \u0642\u0644\u0651 \u2014 \u062E\u0637\u0648\u0629 \u0627\u0644\u064A\u0648\u0645 \u062A\u0643\u0641\u064A", "\xAB\u0641\u0627\u0630\u0643\u0631\u0648\u0646\u064A \u0623\u0630\u0643\u0631\u0643\u0645\xBB \u2014 \u0627\u062C\u0639\u0644\u064A \u0644\u0643\u0650 \u0646\u0635\u064A\u0628\u064B\u0627 \u0645\u0646 \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u064A\u0648\u0645", "\u0645\u0627 \u0639\u0646\u062F \u0627\u0644\u0644\u0647 \u0644\u0627 \u064A\u0646\u0641\u062F\u060C \u0627\u0637\u0644\u0628\u064A \u0648\u062A\u0648\u0643\u0651\u0644\u064A \u0628\u0647\u062F\u0648\u0621 \u{1F90D}", "\xAB\u0625\u0650\u0646\u064E\u0651 \u0645\u064E\u0639\u064E \u0627\u0644\u0652\u0639\u064F\u0633\u0652\u0631\u0650 \u064A\u064F\u0633\u0652\u0631\u064B\u0627\xBB \u2014 \u0648\u0639\u062F\u064C \u0644\u0627 \u064A\u062A\u062E\u0644\u0651\u0641", "\u064A\u0648\u0645\u0643\u0650 \u0645\u0646 \u0639\u0645\u0631\u0643\u0650\u060C \u0627\u062C\u0639\u0644\u064A\u0647 \u0634\u0627\u0647\u062F\u064B\u0627 \u0644\u0643\u0650 \u0644\u0627 \u0639\u0644\u064A\u0643\u0650", "\u0627\u0644\u0644\u0637\u0641 \u0628\u0627\u0644\u0646\u0641\u0633 \u0639\u0628\u0627\u062F\u0629 \u0623\u064A\u0636\u064B\u0627\u060C \u0628\u0644\u0627 \u0642\u0633\u0648\u0629 \u0648\u0644\u0627 \u0644\u0648\u0645 \u{1F338}", "\xAB\u0623\u064E\u0644\u064E\u0627 \u0628\u0650\u0630\u0650\u0643\u0652\u0631\u0650 \u0627\u0644\u0644\u064E\u0651\u0647\u0650 \u062A\u064E\u0637\u0652\u0645\u064E\u0626\u0650\u0646\u064F\u0651 \u0627\u0644\u0652\u0642\u064F\u0644\u064F\u0648\u0628\u064F\xBB", "\u0627\u0633\u062A\u063A\u0641\u0627\u0631 \u0627\u0644\u0635\u0628\u0627\u062D \u064A\u0641\u062A\u062D \u0627\u0644\u064A\u0648\u0645 \u0628\u0627\u0644\u0646\u0648\u0631 \u2728", "\u0644\u0627 \u062A\u0633\u062A\u0635\u063A\u0631\u064A \u062D\u0633\u0646\u0629\u060C \u0641\u0627\u0644\u0642\u0637\u0631\u0629 \u062A\u0635\u0646\u0639 \u0627\u0644\u0646\u0647\u0631 \u{1F319}", "\u0646\u064A\u062A\u0643\u0650 \u0627\u0644\u0635\u0627\u062F\u0642\u0629 \u062A\u062D\u0648\u0651\u0644 \u0627\u0644\u0639\u0627\u062F\u0629 \u0625\u0644\u0649 \u0639\u0628\u0627\u062F\u0629 \u{1F90D}", "\u0631\u0628\u0643\u0650 \u064A\u0631\u0627\u0643\u0650 \u0648\u0623\u0646\u062A\u0650 \u062A\u062D\u0627\u0648\u0644\u064A\u0646\u060C \u0648\u0647\u0630\u0627 \u064A\u0643\u0641\u064A\u0643\u0650", "\u062E\u064A\u0631 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0623\u062F\u0648\u0645\u0647\u0627 \u0648\u0625\u0646 \u0642\u0644\u0651 \u2014 \u0646\u0643\u0645\u0644 \u0645\u0639\u064B\u0627 \u0627\u0644\u064A\u0648\u0645 \u{1F33F}"];
+  var DAYMSG_POOLS = {
+    great: [
+      "\u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647 \u0639\u0644\u064A\u0643\u0650 \u064A\u0627 {name}\u060C \u064A\u0648\u0645\u064C \u0645\u0634\u064A\u062A\u0650 \u0641\u064A\u0647 \u0645\u0639 \u0627\u0644\u0644\u0647 \u062E\u0637\u0648\u0629 \u062E\u0637\u0648\u0629: \u0635\u0644\u064A\u062A\u0650\u060C \u0648\u0630\u0643\u0631\u062A\u0650\u060C \u0648\u0623\u062D\u0633\u0646\u062A\u0650. \u0647\u0630\u0647 \u0647\u064A \u0627\u0644\u0623\u064A\u0627\u0645 \u0627\u0644\u062A\u064A \u064A\u064F\u0643\u062A\u0628 \u0641\u064A\u0647\u0627 \u0627\u0644\u0639\u0645\u0631 \u062D\u0642\u064B\u0627. \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u0645\u0646\u0643\u0650 \u0643\u0644 \u062D\u0631\u0641 \u0648\u0643\u0644 \u0633\u062C\u062F\u0629\u060C \u0648\u062C\u0639\u0644 \u063A\u062F\u0643\u0650 \u0623\u062C\u0645\u0644 \u0648\u0623\u0642\u0631\u0628 \u0625\u0644\u064A\u0647.",
+      "\u0627\u0644\u0644\u0647\u0645 \u0644\u0643 \u0627\u0644\u062D\u0645\u062F \u064A\u0627 {name}. \u064A\u0648\u0645\u0643\u0650 \u0627\u0644\u064A\u0648\u0645 \u0635\u0641\u062D\u0629 \u0645\u0644\u0623\u062A\u0650\u0647\u0627 \u0628\u0637\u0627\u0639\u0629 \u0627\u0644\u0644\u0647 \u0648\u0630\u0643\u0631\u0647\u060C \u0648\u0647\u064A \u0627\u0644\u0635\u0641\u062D\u0627\u062A \u0627\u0644\u062A\u064A \u062A\u064F\u0641\u0631\u062D \u0635\u0627\u062D\u0628\u0647\u0627 \u064A\u0648\u0645 \u062A\u064F\u0639\u0631\u0636. \u0646\u0627\u0645\u064A \u0627\u0644\u0644\u064A\u0644\u0629 \u0628\u0642\u0644\u0628 \u0645\u0637\u0645\u0626\u0646 \u0645\u0645\u062A\u0646\u0629\u060C \u0641\u0642\u062F \u0623\u062D\u0633\u0646\u062A\u0650\u060C \u0648\u0627\u0644\u0644\u0647 \u0644\u0627 \u064A\u0636\u064A\u0639 \u0623\u062C\u0631 \u0627\u0644\u0645\u062D\u0633\u0646\u064A\u0646.",
+      "\u064A\u0627 {name}\u060C \u0627\u0644\u064A\u0648\u0645 \u0643\u0646\u062A\u0650 \u0643\u0645\u0627 \u062A\u062D\u0628\u064A\u0646 \u0623\u0646 \u062A\u0643\u0648\u0646\u064A: \u0639\u0644\u0649 \u0637\u0631\u064A\u0642 \u0627\u0644\u0644\u0647 \u062B\u0627\u0628\u062A\u0629\u060C \u0647\u0627\u062F\u0626\u0629\u060C \u063A\u0646\u064A\u0629 \u0628\u0644\u0627 \u0636\u062C\u064A\u062C. \u0627\u062D\u0641\u0638\u064A \u0647\u0630\u0627 \u0627\u0644\u0634\u0639\u0648\u0631 \u062C\u064A\u062F\u064B\u0627 \u0641\u0647\u0648 \u062B\u0645\u0631\u0629 \u0627\u062C\u062A\u0647\u0627\u062F\u0643\u0650\u060C \u0648\u063A\u062F\u064B\u0627 \u0646\u0643\u0645\u0644 \u0627\u0644\u0645\u0634\u0648\u0627\u0631 \u0646\u0641\u0633\u0647 \u0628\u062E\u0637\u0649 \u0648\u0627\u062B\u0642\u0629.",
+      "\u0623\u0645\u0633\u0643\u064A \u064A\u0648\u0645\u0643\u0650 \u0647\u0630\u0627 \u0628\u062D\u0628 \u064A\u0627 {name}. \u0643\u0644 \u0639\u0644\u0627\u0645\u0629 \u0633\u062C\u0651\u0644\u062A\u0650\u0647\u0627 \u062F\u0639\u0627\u0621 \u064A\u0631\u062A\u0641\u0639 \u0648\u062E\u064A\u0631 \u064A\u064F\u062F\u064E\u0651\u062E\u0631 \u0644\u0643\u0650 \u0639\u0646\u062F \u0645\u0646 \u0644\u0627 \u064A\u0636\u064A\u0639 \u0639\u0646\u062F\u0647 \u0634\u064A\u0621. \u0645\u0646 \u062D\u0641\u0638 \u0627\u0644\u0644\u0647\u064E \u0641\u064A \u064A\u0648\u0645\u0647 \u062D\u0641\u0638\u0647 \u0627\u0644\u0644\u0647 \u0641\u064A \u0639\u0645\u0631\u0647\u060C \u0648\u0623\u0646\u062A\u0650 \u0627\u0644\u064A\u0648\u0645 \u062D\u0641\u0638\u062A\u0650 \u0627\u0644\u0644\u0647 \u0641\u064A \u064A\u0648\u0645\u0643\u0650. \u0625\u0644\u0649 \u0644\u0642\u0627\u0621 \u0627\u0644\u063A\u062F \u0628\u0625\u0630\u0646 \u0627\u0644\u0644\u0647."
+    ],
+    mixed: [
+      "\u064A\u0627 {name}\u060C \u064A\u0648\u0645\u0643\u0650 \u0627\u0644\u064A\u0648\u0645 \u062E\u0644\u064A\u0637 \u0645\u0646 \u0646\u0648\u0631 \u0648\u062A\u0639\u0628\u060C \u0648\u0647\u0630\u0627 \u0634\u0623\u0646 \u0628\u0646\u064A \u0622\u062F\u0645 \u062C\u0645\u064A\u0639\u064B\u0627\u060C \u0648\u0627\u0644\u062D\u0645\u062F \u0644\u0644\u0647 \u0639\u0644\u0649 \u0643\u0644 \u062D\u0627\u0644. \u0645\u0627 \u062A\u0645\u0651 \u0645\u0646 \u062E\u064A\u0631 \u0641\u0627\u0634\u0643\u0631\u064A \u0627\u0644\u0644\u0647 \u0639\u0644\u064A\u0647\u060C \u0648\u0645\u0627 \u0641\u0627\u062A \u0641\u0628\u0627\u0628 \u0627\u0644\u062A\u0648\u0628\u0629 \u0644\u0627 \u064A\u064F\u063A\u0644\u0642\u060C \u0648\u0627\u0644\u063A\u062F \u0623\u0642\u0631\u0628 \u0645\u0645\u0627 \u062A\u0638\u0646\u064A\u0646.",
+      "\u0627\u0644\u064A\u0648\u0645 \u0644\u0645 \u064A\u0643\u0646 \u0643\u0627\u0645\u0644\u064B\u0627 \u064A\u0627 {name}\u060C \u0648\u0627\u0644\u0644\u0647 \u0644\u0645 \u064A\u0637\u0644\u0628 \u0645\u0646\u0643\u0650 \u0627\u0644\u0643\u0645\u0627\u0644 \u2014 \u0637\u0644\u0628 \u0635\u062F\u0642\u0643\u0650 \u0648\u0645\u062D\u0627\u0648\u0644\u062A\u0643\u0650\u060C \u0648\u0623\u0646\u062A\u0650 \u062D\u0627\u0648\u0644\u062A\u0650 \u0648\u0633\u062C\u0651\u0644\u062A\u0650\u060C \u0648\u0647\u0630\u0647 \u0628\u062F\u0627\u064A\u0629 \u0643\u0644 \u0631\u0627\u062C\u0639. \u063A\u062F\u064B\u0627 \u0646\u0633\u062A\u062F\u0631\u0643 \u0645\u0627 \u0641\u0627\u062A \u0628\u062E\u0637\u0648\u0629 \u0648\u0627\u062D\u062F\u0629 \u0635\u0627\u062F\u0642\u0629\u060C \u0644\u0627 \u0623\u0643\u062B\u0631.",
+      "\u0646\u0638\u0631\u0629 \u0635\u0627\u062F\u0642\u0629 \u0647\u0627\u062F\u0626\u0629 \u0644\u064A\u0648\u0645\u0643\u0650 \u064A\u0627 {name}: \u0641\u064A\u0647 \u0645\u0627 \u064A\u0641\u0631\u062D \u0648\u0641\u064A\u0647 \u0645\u0627 \u064A\u064F\u0633\u062A\u062F\u0631\u0643\u060C \u0648\u0647\u0630\u0627 \u0647\u0648 \u0627\u0644\u0637\u0631\u064A\u0642 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u2014 \u062E\u0637\u0648\u0629 \u0641\u062E\u0637\u0648\u0629\u060C \u0644\u0627 \u0642\u0641\u0632\u0629 \u0648\u0627\u062D\u062F\u0629. \u0633\u0645\u0651\u064A\u0646\u0627 \u0645\u0627 \u0641\u0627\u062A \u0628\u0644\u0627 \u0644\u0648\u0645\u060C \u0648\u0646\u0627\u0645\u064A \u0639\u0644\u0649 \u0646\u064A\u0629 \u0627\u0633\u062A\u062F\u0631\u0627\u0643\u0647\u060C \u0641\u0627\u0644\u0646\u064A\u0629 \u0627\u0644\u0635\u0627\u062F\u0642\u0629 \u0639\u0645\u0644.",
+      "\u062D\u0633\u0646\u064F \u064A\u0648\u0645\u0643\u0650 \u064A\u0627 {name} \u0623\u0646\u0643\u0650 \u0631\u0627\u0642\u0628\u062A\u0650\u0647 \u0648\u0644\u0645 \u064A\u0645\u0631\u0651 \u0641\u064A \u063A\u0641\u0644\u0629 \u2014 \u0641\u0645\u0646 \u062D\u0627\u0633\u0628 \u0646\u0641\u0633\u0647 \u0643\u0644 \u064A\u0648\u0645 \u0642\u0644\u0651\u062A \u063A\u0641\u0644\u0627\u062A\u0647 \u0648\u0643\u062B\u0631\u062A \u0623\u0646\u0648\u0627\u0631 \u0623\u064A\u0627\u0645\u0647. \u0645\u0627 \u062A\u0645\u0651 \u0641\u0644\u0644\u0647 \u0627\u0644\u062D\u0645\u062F\u060C \u0648\u0645\u0627 \u0641\u0627\u062A \u0641\u0647\u0648 \u0641\u064A \u0630\u0645\u0629 \u0627\u0644\u063A\u062F\u060C \u0648\u0646\u064A\u062A\u0643\u0650 \u0627\u0644\u062D\u0633\u0646\u0629 \u062A\u062C\u0639\u0644 \u062D\u062A\u0649 \u0627\u0644\u062A\u0639\u062B\u0631 \u062E\u0637\u0648\u0629 \u0644\u0644\u0623\u0645\u0627\u0645."
+    ],
+    weak: [
+      "\u064A\u0627 {name}\u060C \u0645\u0647\u0645\u0627 \u062B\u0642\u064F\u0644 \u064A\u0648\u0645\u0643\u0650 \u0648\u0642\u0644\u0651 \u0645\u0627 \u0641\u064A\u0647\u060C \u0641\u0623\u0646\u062A\u0650 \u0644\u0645 \u062A\u062A\u0631\u0643\u064A \u0627\u0644\u0637\u0631\u064A\u0642 \u2014 \u0646\u0638\u0631\u062A\u0650 \u0648\u062D\u0627\u0633\u0628\u062A\u0650\u060C \u0648\u0647\u0630\u0627 \u0623\u0648\u0644 \u0627\u0644\u0631\u062C\u0648\u0639. \u0627\u0644\u0644\u0647 \u0644\u0627 \u064A\u0645\u0644\u0651 \u062D\u062A\u0649 \u062A\u0645\u0644\u0651\u0648\u0627\u060C \u0648\u0628\u0627\u0628\u0647 \u0645\u0641\u062A\u0648\u062D \u0644\u0643\u0650 \u0627\u0644\u0622\u0646 \u0642\u0628\u0644 \u0627\u0644\u063A\u062F \u0648\u0628\u0639\u062F\u0647. \u0644\u0627 \u062A\u062D\u0632\u0646\u064A\u061B \u0646\u0627\u0645\u064A \u0627\u0644\u0644\u064A\u0644\u0629 \u0639\u0644\u0649 \u0627\u0633\u062A\u063A\u0641\u0627\u0631 \u0635\u0627\u062F\u0642\u060C \u0648\u063A\u062F\u064B\u0627 \u0646\u0628\u062F\u0623 \u0645\u0639\u064B\u0627 \u0645\u0646 \u062C\u062F\u064A\u062F.",
+      "\u0623\u064A\u0627\u0645 \u062A\u0636\u0639\u0641 \u0641\u064A\u0647\u0627 \u0627\u0644\u0647\u0645\u0645 \u064A\u0627 {name}\u060C \u0648\u0647\u0630\u0627 \u0644\u0627 \u064A\u0639\u064A\u0628\u0643\u0650\u061B \u064A\u0639\u064A\u0628\u0646\u0627 \u0641\u0642\u0637 \u0623\u0646 \u0646\u0638\u0646 \u0623\u0646 \u0628\u0627\u0628 \u0627\u0644\u0644\u0647 \u064A\u064F\u063A\u0644\u0642. \u0627\u0644\u064A\u0648\u0645 \u0645\u0636\u0649 \u0648\u0645\u0627 \u0641\u0627\u062A \u0645\u062D\u0641\u0648\u0638 \u0628\u0644\u0627 \u0644\u0648\u0645\u060C \u0648\u0631\u0628\u0643\u0650 \u064A\u0641\u0631\u062D \u0628\u062A\u0648\u0628\u062A\u0643\u0650 \u0623\u0643\u062B\u0631 \u0645\u0646 \u0641\u0631\u062D\u0643\u0650 \u0628\u0647\u0627. \u063A\u062F\u0643\u0650 \u0635\u0641\u062D\u0629 \u0628\u064A\u0636\u0627\u0621\u060C \u0648\u0633\u0646\u0643\u062A\u0628\u0647\u0627 \u0645\u0639\u064B\u0627 \u0625\u0646 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647.",
+      "\u0644\u0627 \u0628\u0623\u0633 \u0639\u0644\u064A\u0643\u0650 \u064A\u0627 {name}. \u0627\u0644\u0623\u064A\u0627\u0645 \u0627\u0644\u062B\u0642\u064A\u0644\u0629 \u0645\u062D\u0637\u0629 \u0627\u0633\u062A\u0631\u0627\u062D\u0629 \u0641\u064A \u0627\u0644\u0637\u0631\u064A\u0642\u060C \u0644\u0627 \u0646\u0647\u0627\u064A\u062A\u0647. \u0642\u0648\u0644\u064A \u0627\u0644\u0622\u0646 \u0628\u0642\u0644\u0628 \u062D\u0627\u0636\u0631: \u0623\u0633\u062A\u063A\u0641\u0631 \u0627\u0644\u0644\u0647 \u0627\u0644\u0639\u0638\u064A\u0645 \u0648\u0623\u062A\u0648\u0628 \u0625\u0644\u064A\u0647\u060C \u062B\u0645 \u0646\u0627\u0645\u064A \u0645\u0637\u0645\u0626\u0646\u0629 \u2014 \u0641\u063A\u062F\u064B\u0627 \u0646\u0639\u0648\u062F \u0625\u0644\u0649 \u0627\u0644\u0635\u0644\u0627\u0629 \u0648\u0627\u0644\u0630\u0643\u0631 \u0648\u0627\u0644\u0648\u0631\u062F\u060C \u062E\u0637\u0648\u0629 \u062E\u0637\u0648\u0629.",
+      "\u064A\u0627 {name}\u060C \u0625\u0646 \u0636\u0639\u064F\u0641 \u064A\u0648\u0645\u0643\u0650 \u0641\u0642\u0644\u0628\u0643\u0650 \u0644\u0645 \u064A\u0645\u062A \u2014 \u0623\u0646\u062A\u0650 \u0647\u0646\u0627\u060C \u062A\u0642\u0631\u0626\u064A\u0646 \u0648\u062A\u0646\u0638\u0631\u064A\u0646 \u0625\u0644\u0649 \u064A\u0648\u0645\u0643\u0650 \u0628\u0635\u062F\u0642\u060C \u0648\u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0646\u0638\u0631\u0629 \u062D\u064A\u0627\u0629. \u0631\u0628\u0643\u0650 \u0623\u0631\u062D\u0645 \u0628\u0643\u0650 \u0645\u0646 \u0623\u0645\u0643\u0650 \u0628\u0643\u0650. \u0633\u0627\u0645\u062D\u064A \u0646\u0641\u0633\u0643\u0650 \u0627\u0644\u0644\u064A\u0644\u0629\u060C \u0648\u0627\u0633\u062A\u0642\u0628\u0644\u064A \u0627\u0644\u063A\u062F \u0628\u0639\u0645\u0644 \u064A\u0633\u064A\u0631 \u062F\u0627\u0626\u0645\u060C \u0641\u0625\u0646 \u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u0623\u062F\u0648\u0645\u0647\u0627 \u0648\u0625\u0646 \u0642\u0644\u0651."
+    ]
+  };
+  var DAYMSG_TOMORROW = {
+    "\u0627\u0644\u0635\u0644\u0648\u0627\u062A": "\u0627\u0644\u0635\u0644\u0648\u0627\u062A: \u0627\u062A\u0641\u0642\u064A \u0645\u0639 \u0646\u0641\u0633\u0643\u0650 \u0645\u0646 \u0627\u0644\u0622\u0646 \u2014 \u0643\u0644 \u0623\u0630\u0627\u0646 \u064A\u064F\u0631\u0641\u0639 \u063A\u062F\u064B\u0627 \u0647\u0648 \u0645\u0648\u0639\u062F\u0643\u0650 \u0645\u0639 \u0627\u0644\u0644\u0647\u060C \u0641\u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u064A\u0647 \u0627\u0644\u0635\u0644\u0627\u0629 \u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627.",
+    "\u0627\u0644\u0646\u0648\u0627\u0641\u0644": "\u0627\u0644\u0633\u0646\u0646 \u0648\u0627\u0644\u0646\u0648\u0627\u0641\u0644: \u062A\u064F\u0643\u0645\u0651\u0644 \u0645\u0627 \u0646\u0642\u0635 \u0645\u0646 \u0627\u0644\u0641\u0631\u0627\u0626\u0636 \u0648\u062A\u062F\u0646\u064A \u0645\u0646 \u0627\u0644\u0644\u0647. \u0627\u0628\u062F\u0626\u064A \u063A\u062F\u064B\u0627 \u0628\u0633\u0646\u0629 \u0627\u0644\u0641\u062C\u0631 \u0642\u0628\u0644 \u0635\u0644\u0627\u062A\u0647\u060C \u0648\u0644\u0648 \u0634\u064A\u0626\u064B\u0627 \u064A\u0633\u064A\u0631\u064B\u0627.",
+    "\u0627\u0644\u0623\u0630\u0643\u0627\u0631": "\u0627\u0644\u0623\u0630\u0643\u0627\u0631: \u0627\u0628\u062F\u0626\u064A \u064A\u0648\u0645\u0643\u0650 \u063A\u062F\u064B\u0627 \u0628\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0635\u0628\u0627\u062D \u0642\u0628\u0644 \u0627\u0644\u0631\u0633\u0627\u0626\u0644 \u0648\u0627\u0644\u062A\u0637\u0628\u064A\u0642\u0627\u062A\u061B \u0641\u0647\u064A \u062D\u0635\u0646\u0643\u0650\u060C \u0648\u0645\u0646 \u062D\u064F\u0635\u0651\u0646 \u0623\u0648\u0644 \u064A\u0648\u0645\u0647 \u0633\u0627\u0631 \u0628\u0642\u064A\u062A\u0647 \u0641\u064A \u062D\u0641\u0638 \u0627\u0644\u0644\u0647.",
+    "\u0627\u0644\u0642\u0631\u0622\u0646": "\u0627\u0644\u0642\u0631\u0622\u0646 \u0648\u0627\u0644\u062A\u0641\u0633\u064A\u0631: \u0627\u062C\u0639\u0644\u064A \u063A\u062F\u064B\u0627 \u0645\u0648\u0639\u062F\u064B\u0627 \u062B\u0627\u0628\u062A\u064B\u0627 \u0645\u0639 \u0643\u062A\u0627\u0628 \u0627\u0644\u0644\u0647\u060C \u0648\u0644\u0648 \u0622\u064A\u0627\u062A \u0645\u0639\u062F\u0648\u062F\u0629 \u2014 \u0641\u0627\u0644\u0648\u0631\u062F \u064A\u062C\u0639\u0644 \u0627\u0644\u064A\u0648\u0645 \u0643\u0644\u0647 \u0646\u0648\u0631\u064B\u0627.",
+    "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629": "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629: \u0643\u0644\u0645\u0629 \u0637\u064A\u0628\u0629 \u0644\u0648\u0627\u0644\u062F\u064A\u0643\u0650\u060C \u0623\u0648 \u062F\u0639\u0648\u0629 \u0644\u0647\u0645\u0627 \u0641\u064A \u0627\u0644\u063A\u064A\u0628\u060C \u0623\u0648 \u0635\u062F\u0642\u0629 \u0633\u0631 \u0648\u0644\u0648 \u064A\u0633\u064A\u0631\u0629 \u2014 \u0641\u0627\u0644\u0628\u0631 \u0628\u0627\u0628 \u0631\u0632\u0642 \u0648\u0633\u0643\u064A\u0646\u0629.",
+    "\u0627\u0644\u0635\u064A\u0627\u0645": "\u0627\u0644\u0635\u064A\u0627\u0645: \u0625\u0646 \u0641\u0627\u062A\u0643\u0650 \u0635\u064A\u0627\u0645 \u0627\u0644\u0646\u0627\u0641\u0644\u0629 \u0641\u0644\u0627 \u062A\u062D\u0631\u0645\u064A \u0646\u0641\u0633\u0643\u0650 \u0646\u064A\u0651\u062A\u0647 \u0648\u062B\u0648\u0627\u0628 \u0645\u0627 \u0627\u0633\u062A\u0637\u0639\u062A\u0650\u060C \u0648\u0627\u0628\u062F\u0626\u064A \u0628\u064A\u0648\u0645 \u0627\u0644\u0625\u062B\u0646\u064A\u0646 \u0623\u0648 \u0627\u0644\u062E\u0645\u064A\u0633 \u0627\u0644\u0642\u0631\u064A\u0628.",
+    "\u0627\u0644\u0645\u0647\u0627\u0645": "\u0645\u0647\u0627\u0645\u0643\u0650: \u0627\u0643\u062A\u0628\u064A \u0645\u0647\u0645\u0629 \u0648\u0627\u062D\u062F\u0629 \u0635\u063A\u064A\u0631\u0629 \u0644\u063A\u062F\u064D \u0648\u0623\u0646\u062C\u0632\u064A\u0647\u0627 \u0623\u0648\u0644 \u0645\u0627 \u062A\u0628\u062F\u0626\u064A\u0646 \u064A\u0648\u0645\u0643\u0650\u061B \u0641\u0627\u0644\u062A\u0631\u0627\u0643\u0645 \u064A\u0628\u062F\u0623 \u0645\u0646 \u0627\u0644\u0645\u0624\u062C\u0644\u0627\u062A \u0627\u0644\u0635\u063A\u064A\u0631\u0629.",
+    "\u0627\u0644\u0634\u0627\u0634\u0629": "\u0648\u0642\u062A \u0627\u0644\u0634\u0627\u0634\u0629: \u0643\u0627\u0646 \u0623\u0639\u0644\u0649 \u0645\u0646 \u0633\u062A \u0633\u0627\u0639\u0627\u062A \u0627\u0644\u064A\u0648\u0645 \u2014 \u063A\u062F\u064B\u0627 \u0633\u0627\u0639\u0629 \u0648\u0627\u062D\u062F\u0629 \u0623\u0642\u0644 \u062A\u0639\u0646\u064A \u0639\u0645\u0631\u064B\u0627 \u0623\u0637\u0648\u0644 \u0644\u0642\u0644\u0628\u0643\u0650 \u0648\u0639\u064A\u0646\u064A\u0643\u0650 \u0648\u0623\u0647\u062F\u0627\u0641\u0643\u0650."
+  };
+  function DayMessage({ open, name, cls, idx, missed, suggestions, onReport, onClose }) {
+    const ref = (0, import_react.useRef)(null);
+    if (open && ref.current && !ref.current.open) ref.current.showModal();
+    if (!open && ref.current?.open) ref.current.close();
+    const pool = DAYMSG_POOLS[cls];
+    const msg = pool[idx % pool.length].replace("{name}", name || "\u0635\u062F\u064A\u0642\u062A\u064A");
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dialog", { ref, className: "mh-dialog mh-sheet", onClose, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-dialog-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "\u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u064A\u0648\u0645 \u{1F48C}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-dialog-x", onClick: onClose, "aria-label": "\u0625\u063A\u0644\u0627\u0642", children: "\u2715" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-sheet-progress", children: cls === "great" ? "\u064A\u0648\u0645 \u0623\u062A\u0645\u0645\u062A\u0650\u0647 \u0628\u062D\u0645\u062F \u0627\u0644\u0644\u0647 \u2728" : cls === "mixed" ? "\u064A\u0648\u0645 \u0641\u064A\u0647 \u0646\u0648\u0631 \u0648\u0645\u0627 \u064A\u064F\u0633\u062A\u062F\u0631\u0643 \u{1F33F}" : "\u064A\u0648\u0645 \u062B\u0642\u064A\u0644\u060C \u0648\u0628\u0627\u0628 \u0627\u0644\u0644\u0647 \u0645\u0641\u062A\u0648\u062D \u{1F90D}" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-sheet-body", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-report-p", style: { lineHeight: 2 }, children: msg }),
+        missed.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-mutlaq", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-mutlaq-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-mutlaq-text", children: "\u0645\u0627 \u0641\u0627\u062A\u0643\u0650 \u0627\u0644\u064A\u0648\u0645 \u2014 \u0628\u0644\u0627 \u0644\u0648\u0645 \u{1F33F}" }) }),
+          missed.map((m, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
+            m.label,
+            m.note ? ` \u2014 \u0627\u0644\u0633\u0628\u0628: ${m.note}` : ""
+          ] }, i)),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u062A\u0633\u0645\u064A\u062A\u0647 \u0623\u0648\u0644 \u0627\u0633\u062A\u062F\u0631\u0627\u0643\u0647\u060C \u0648\u0627\u0633\u062A\u063A\u0641\u0627\u0631\u0643\u0650 \u0627\u0644\u0644\u064A\u0644\u0629 \u064A\u0645\u062D\u0648 \u0623\u062B\u0631\u0647 \u0628\u0625\u0630\u0646 \u0627\u0644\u0644\u0647." })
+        ] }),
+        suggestions.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-mutlaq", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-mutlaq-head", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-mutlaq-text", children: "\u0644\u0650\u063A\u064E\u062F\u064D \u{1F331}" }) }),
+          suggestions.map((t, i) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-report-p", children: t }, i))
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-note-actions", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "primary", onClick: onReport, children: "\u0627\u0641\u062A\u062D\u064A \u062A\u0642\u0631\u064A\u0631 \u0627\u0644\u064A\u0648\u0645 \u{1F4DC}" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "secondary", onClick: onClose, children: "\u0625\u063A\u0644\u0627\u0642" })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u0646\u0627\u0645\u064A \u0628\u0642\u0644\u0628 \u0645\u0637\u0645\u0626\u0646: \u0645\u0627 \u0643\u0627\u0646 \u0644\u0644\u0647 \u0628\u0642\u064A\u060C \u0648\u063A\u062F\u0643\u0650 \u0639\u0646\u062F \u0627\u0644\u0644\u0647 \u0623\u062C\u0645\u0644 \u{1F90D}" })
+    ] });
+  }
   var lastDone = { i: -1 };
   var lastQada = { i: -1 };
   var lastOn = { i: -1 };
@@ -14526,7 +14594,7 @@ Error generating stack: ` + i.message + `
     const doneCount = WIRD_MUTLAQ.filter((w) => (counts[w.id] || 0) >= w.target).length;
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dialog", { ref, className: "mh-dialog mh-sheet", onClose, children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-dialog-head", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 \u{1F33F}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "\u0648\u0631\u062F \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u{1F33F}" }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-dialog-x", onClick: onClose, "aria-label": "\u0625\u063A\u0644\u0627\u0642", children: "\u2715" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-sheet-progress", children: doneCount === WIRD_MUTLAQ.length ? "\u0627\u0643\u062A\u0645\u0644 \u0648\u0631\u062F\u0643\u0650 \u0643\u0627\u0645\u0644\u064B\u0627\u060C \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647 \u{1F90D}" : `\u0623\u062A\u0645\u0645\u062A\u0650 ${ar2(doneCount)} \u0645\u0646 ${ar2(WIRD_MUTLAQ.length)} \u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u064A\u0648\u0645` }),
@@ -14548,6 +14616,52 @@ Error generating stack: ` + i.message + `
         ] }, w.id);
       }) }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u064A\u064F\u0635\u0641\u064E\u0651\u0631 \u0627\u0644\u0639\u062F\u062F \u0645\u0639 \u0643\u0644 \u064A\u0648\u0645 \u062C\u062F\u064A\u062F. \u0627\u0644\u0647\u062F\u0641 \u062B\u0627\u0628\u062A \u0643\u0645\u0627 \u0627\u062E\u062A\u0631\u062A\u0650\u0647\u060C \u0648\u0627\u0644\u062A\u0642\u062F\u0645 \u0645\u062D\u0641\u0648\u0638 \u0639\u0644\u0649 \u062C\u0647\u0627\u0632\u0643\u0650." })
+    ] });
+  }
+  function FreeWirdSheet({ open, savedCount, ready, onSave, onClose }) {
+    const ref = (0, import_react.useRef)(null);
+    const [draft, setDraft] = (0, import_react.useState)("");
+    if (open && ref.current && !ref.current.open) ref.current.showModal();
+    if (!open && ref.current?.open) ref.current.close();
+    const submit = () => {
+      const raw = draft.replace(/[٠-٩]/g, (c) => String("\u0660\u0661\u0662\u0663\u0664\u0665\u0666\u0667\u0668\u0669".indexOf(c))).replace(/[^0-9]/g, "");
+      const n = parseInt(raw, 10);
+      if (!isNaN(n) && n >= 0 && n <= 1e6) onSave(n);
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dialog", { ref, className: "mh-dialog mh-sheet", onClose, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-dialog-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("b", { children: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 \u{1F33F}" }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-dialog-x", onClick: onClose, "aria-label": "\u0625\u063A\u0644\u0627\u0642", children: "\u2715" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-sheet-progress", children: savedCount != null ? `\u0633\u062C\u0651\u0644\u062A\u0650 \u0627\u0644\u064A\u0648\u0645: ${ar2(savedCount)} \u0630\u0643\u0631\u064B\u0627\u060C \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647 \u{1F90D}` : "\u0643\u0645 \u0630\u0643\u0631\u062A\u0650 \u0627\u0644\u064A\u0648\u0645\u061F \u0627\u0643\u062A\u0628\u064A \u0627\u0644\u0639\u062F\u062F \u0628\u0644\u0627 \u0647\u062F\u0641 \u0645\u062D\u062F\u062F" }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-sheet-body", children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-mutlaq", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-mutlaq-head", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-mutlaq-text", children: "\u0639\u062F\u062F \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u064A\u0648\u0645" }),
+          savedCount != null && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-mutlaq-count", children: [
+            ar2(savedCount),
+            " \u2713"
+          ] })
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-habit-actions", style: { justifyContent: "center", marginTop: "8px" }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            "input",
+            {
+              className: "mh-todoin mh-screenin",
+              dir: "ltr",
+              inputMode: "numeric",
+              placeholder: "\u0645\u062B\u0627\u0644: \u0663\u0660\u0660",
+              value: draft,
+              disabled: !ready,
+              onChange: (e6) => setDraft(e6.target.value),
+              onKeyDown: (e6) => {
+                if (e6.key === "Enter") submit();
+              }
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "primary", disabled: !ready || !draft.trim(), onClick: submit, children: "\u0627\u062D\u0641\u0638\u064A" })
+        ] })
+      ] }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u0630\u0643\u0631 \u0628\u0644\u0627 \u0639\u062F\u062F \u0648\u0644\u0627 \u062D\u062F \u2014 \u0645\u0627 \u064A\u0633\u0651\u0631\u0647 \u0627\u0644\u0644\u0647 \u0644\u0643\u0650 \u0645\u0646 \u062A\u0633\u0628\u064A\u062D \u0648\u062A\u0647\u0644\u064A\u0644 \u0648\u062A\u062D\u0645\u064A\u062F \u0648\u0627\u0633\u062A\u063A\u0641\u0627\u0631 \u0648\u0635\u0644\u0627\u0629 \u0639\u0644\u0649 \u0627\u0644\u0646\u0628\u064A \uFDFA. \u064A\u064F\u062D\u0641\u0638 \u0644\u0644\u064A\u0648\u0645 \u0648\u064A\u062F\u062E\u0644 \u062A\u0642\u0631\u064A\u0631\u0643\u0650\u060C \u0648\u064A\u0628\u062F\u0623 \u0645\u0646 \u062C\u062F\u064A\u062F \u0645\u0639 \u0643\u0644 \u064A\u0648\u0645." })
     ] });
   }
   function NotePrompt({ target, initial, onSave, onSkip }) {
@@ -14598,7 +14712,47 @@ Error generating stack: ` + i.message + `
     const [notes, setNotes, notesSaved] = useLocalState("mh-notes.v1", {});
     const [adhkarP, setAdhkarP, adhkarSaved] = useLocalState("mh-adhkar.v1", {});
     const [mutlaq, setMutlaq, mutlaqSaved] = useLocalState("mh-mutlaq.v1", {});
+    const [freeWird, setFreeWird, freeWirdSaved] = useLocalState("mh-freewird.v1", {});
+    const [tafsirNotes, setTafsirNotes, tafsirSaved] = useLocalState("mh-tafsir.v1", {});
+    const [tafsirOpen, setTafsirOpen] = (0, import_react.useState)(false);
+    const tUnit = todayTafsirUnit();
+    const finishTafsir = () => {
+      if (!saved.ready) return;
+      if ((readDay(trackRef.current, key).st.wird_tafsir || 0) !== 1) {
+        save({ ...readDay(trackRef.current, key).st, wird_tafsir: 1 }, readDay(trackRef.current, key).istighfar);
+      }
+      setCheer("\u0623\u062A\u0645\u0645\u062A\u0650 \u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u064A\u0648\u0645 \u2014 \u0646\u0648\u0631 \u0639\u0644\u0649 \u0646\u0648\u0631 \u{1F90D}");
+    };
+    const saveTafsirNote = (t) => {
+      if (!tafsirSaved.ready) return;
+      const next = { ...tafsirNotes, [key]: t.slice(0, 500) };
+      const dayKeys = Object.keys(next).sort();
+      while (dayKeys.length > 400) delete next[dayKeys.shift()];
+      setTafsirNotes(next);
+      setCheer("\u062D\u064F\u0641\u0638\u062A \u0641\u0627\u0626\u062F\u062A\u0643\u0650 \u0645\u0639 \u064A\u0648\u0645\u0643\u0650 \u{1F90D}");
+    };
+    const [freeOpen, setFreeOpen] = (0, import_react.useState)(false);
+    const freeRef = (0, import_react.useRef)(freeWird);
+    freeRef.current = freeWird;
+    const saveFreeWird = (n) => {
+      if (!freeWirdSaved.ready || !saved.ready) return;
+      const next = { ...freeRef.current, [key]: n };
+      const dayKeys = Object.keys(next).sort();
+      while (dayKeys.length > 400) delete next[dayKeys.shift()];
+      freeRef.current = next;
+      setFreeWird(next);
+      if ((readDay(trackRef.current, key).st.wird_hurr || 0) !== 1) {
+        save({ ...readDay(trackRef.current, key).st, wird_hurr: 1 }, readDay(trackRef.current, key).istighfar);
+      }
+      setCheer(`\u0633\u064F\u062C\u0651\u0644 \u0648\u0631\u062F\u0643\u0650 \u0627\u0644\u0645\u0637\u0644\u0642: ${ar2(n)} \u0630\u0643\u0631\u064B\u0627 \u0627\u0644\u064A\u0648\u0645 \u2014 \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647 \u{1F90D}`);
+      setFreeOpen(false);
+    };
     const [rpPrompt, setRpPrompt] = useLocalState("mh-reportprompt.v1", { last: "" });
+    const [msgSeen, setMsgSeen] = useLocalState("mh-daymsg.v1", { last: "" });
+    const [msgOpen, setMsgOpen] = (0, import_react.useState)(false);
+    const [dmName] = useLocalState("mh-name.v1", "\u0634\u0645\u0633");
+    const [dmTodos] = useLocalState("mh-todo.v1", {});
+    const [dmScreen] = useLocalState("mh-screen.v1", {});
     const trackRef = (0, import_react.useRef)(track);
     trackRef.current = track;
     const [cheer, setCheer] = (0, import_react.useState)(null);
@@ -14613,6 +14767,25 @@ Error generating stack: ` + i.message + `
     const score = dayScore(track, key, today.getDay());
     const counts = dayCounts(track, key);
     const yCounts = dayCounts(track, isoDay(addDays(today, -1)));
+    const dmMissedHabits = CHECK_HABITS.filter((h) => (day.st[h.id] || 0) === 2);
+    const dmMissedTodos = (dmTodos[key] || []).filter((t) => t.missed);
+    const dmMissed = [
+      ...dmMissedHabits.map((h) => ({ label: h.label, note: notes[key]?.[h.id] })),
+      ...dmMissedTodos.map((t) => ({ label: `\u0645\u0647\u0645\u0629: ${t.t}`, note: t.note }))
+    ];
+    const dmMissedCount = dmMissed.length;
+    const dmCls = dmMissedCount === 0 && counts.done > 0 ? "great" : dmMissedCount >= 4 || counts.missed > 0 && counts.missed >= counts.done ? "weak" : "mixed";
+    const dmIdx = Math.max(0, Math.round((Date.parse(key + "T00:00:00Z") - Date.parse(WIRD_EPOCH + "T00:00:00Z")) / 864e5));
+    const dmGroups = [...new Set(dmMissedHabits.map((h) => h.group))];
+    const dmSugg = [
+      ...dmGroups.map((g) => DAYMSG_TOMORROW[g]).filter(Boolean),
+      ...dmMissedTodos.length > 0 ? [DAYMSG_TOMORROW["\u0627\u0644\u0645\u0647\u0627\u0645"]] : [],
+      ...(dmScreen[key]?.total || 0) >= 6 ? [DAYMSG_TOMORROW["\u0627\u0644\u0634\u0627\u0634\u0629"]] : []
+    ];
+    if (parseInt(cairoParts().hm.slice(0, 2), 10) >= 21 && msgSeen.last !== key && !msgOpen) {
+      setMsgSeen({ last: key });
+      setMsgOpen(true);
+    }
     if (saved.ready && oldSaved.ready && !track.__mig && Object.keys(oldTrack).length > 0) {
       setTrack(pruned({ ...migrate(oldTrack), ...track, __mig: "1" }, 400));
     }
@@ -14697,7 +14870,7 @@ Error generating stack: ` + i.message + `
         const allDone = WIRD_MUTLAQ.every((x) => (x.id === id2 ? c : (mutlaqRef.current[key] || {})[x.id] || 0) >= x.target);
         if (allDone && (readDay(trackRef.current, key).st.wird_mutlaq || 0) !== 1) {
           save({ ...readDay(trackRef.current, key).st, wird_mutlaq: 1 }, readDay(trackRef.current, key).istighfar);
-          setTimeout(() => setCheer("\u0627\u0643\u062A\u0645\u0644 \u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 \u0643\u0627\u0645\u0644\u064B\u0627 \u0627\u0644\u064A\u0648\u0645 \u2014 \u064A\u0648\u0645 \u0645\u0628\u0627\u0631\u0643 \u0639\u0644\u064A\u0643\u0650 \u{1F90D}"), 4700);
+          setTimeout(() => setCheer("\u0627\u0643\u062A\u0645\u0644 \u0648\u0631\u062F \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u0643\u0627\u0645\u0644\u064B\u0627 \u0627\u0644\u064A\u0648\u0645 \u2014 \u064A\u0648\u0645 \u0645\u0628\u0627\u0631\u0643 \u0639\u0644\u064A\u0643\u0650 \u{1F90D}"), 4700);
         }
       }
     };
@@ -14763,7 +14936,7 @@ Error generating stack: ` + i.message + `
     const SHEET_FOR = { adhkar_sabah: "sabah", adhkar_masaa: "masaa", adhkar_nawm: "nawm" };
     const groupRow = (h, sub) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: sub ? "mh-habit mh-sub" : "mh-habit", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-name", children: [
-        SHEET_FOR[h.id] ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setSheet(SHEET_FOR[h.id]), children: h.label }) : h.id === "wird_mutlaq" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setMutlaqOpen(true), children: h.label }) : h.label,
+        SHEET_FOR[h.id] ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setSheet(SHEET_FOR[h.id]), children: h.label }) : h.id === "wird_mutlaq" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setMutlaqOpen(true), children: h.label }) : h.id === "wird_hurr" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setFreeOpen(true), children: h.label }) : h.id === "wird_tafsir" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setTafsirOpen(true), children: h.label }) : h.label,
         (h.hint || HINT[h.id]) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-habit-hint", children: h.hint || HINT[h.id] }),
         SHEET_FOR[h.id] && adhkarSetDone(SHEET_FOR[h.id]) > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-hint", children: [
           "\u0639\u062F\u0651 \u0627\u0644\u064A\u0648\u0645: \u0623\u062A\u0645\u0645\u062A\u0650 ",
@@ -14776,6 +14949,19 @@ Error generating stack: ` + i.message + `
           ar2(mutlaqDoneCount),
           " \u0645\u0646 ",
           ar2(WIRD_MUTLAQ.length)
+        ] }),
+        h.id === "wird_hurr" && freeWird[key] != null && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-hint", children: [
+          "\u0633\u062C\u0651\u0644\u062A\u0650 \u0627\u0644\u064A\u0648\u0645: ",
+          ar2(freeWird[key]),
+          " \u0630\u0643\u0631\u064B\u0627"
+        ] }),
+        h.id === "wird_tafsir" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-hint", children: [
+          "\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645: ",
+          tafsirUnitLabel(tUnit),
+          " (",
+          ar2(tUnit + 1),
+          " \u0645\u0646 \u0666\u0660)",
+          tafsirNotes[key] ? " \u2014 \u0648\u0633\u062C\u0651\u0644\u062A\u0650 \u0641\u0627\u0626\u062F\u062A\u0643\u0650 \u2713" : ""
         ] }),
         pp2[key]?.[h.id] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-hint", children: [
           "\u0633\u064F\u062C\u0651\u0644\u062A \u0628\u0627\u0644\u0635\u0648\u0631\u0629 ",
@@ -14857,6 +15043,20 @@ Error generating stack: ` + i.message + `
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: { "\u0627\u0644\u0646\u0648\u0627\u0641\u0644": "\u0627\u0644\u0646\u0648\u0627\u0641\u0644 \u{1F319}", "\u0627\u0644\u0642\u0631\u0622\u0646": "\u0627\u0644\u0642\u0631\u0622\u0646 \u{1F4D6}", "\u0627\u0644\u0635\u064A\u0627\u0645": "\u0627\u0644\u0635\u064A\u0627\u0645 \u{1F90D}", "\u0627\u0644\u0623\u0630\u0643\u0627\u0631": "\u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u2728", "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629": "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629 \u{1F338}" }[g] }),
           CHECK_HABITS.filter((h) => h.group === g).map((h) => groupRow(h)),
           g === "\u0627\u0644\u0642\u0631\u0622\u0646" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WirdCard, {}),
+          g === "\u0627\u0644\u0642\u0631\u0622\u0646" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-wird", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-wird-info", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
+                "\u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631: ",
+                tafsirUnitLabel(tUnit)
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                ar2(tUnit + 1),
+                " \u0645\u0646 \u0666\u0660 \u2014 ",
+                60 - tUnit - 1 === 0 ? "\u0628\u0625\u062A\u0645\u0627\u0645\u0647 \u064A\u062A\u0645 \u062E\u062A\u0645 \u0627\u0644\u062A\u0641\u0633\u064A\u0631\u060C \u0648\u063A\u062F\u064B\u0627 \u062F\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u{1F90D}" : `\u0628\u0642\u064A ${ar2(60 - tUnit - 1)} \u0646\u0635\u0641 \u062C\u0632\u0621 \u0639\u0644\u0649 \u062E\u062A\u0645 \u0627\u0644\u062A\u0641\u0633\u064A\u0631`
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", onClick: () => setTafsirOpen(true), children: "\u0627\u0642\u0631\u0626\u064A \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u{1F4DC}" })
+          ] }),
           g === "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-habit", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-name", children: [
               "\u0627\u0644\u0627\u0633\u062A\u063A\u0641\u0627\u0631",
@@ -14883,6 +15083,7 @@ Error generating stack: ` + i.message + `
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FajrAlarm, {}),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ScreenTime, {}),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TodoList, {}),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { textAlign: "center", margin: "4px 0 14px" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "secondary", onClick: () => setMsgOpen(true), children: "\u0631\u0633\u0627\u0644\u0629 \u0627\u0644\u064A\u0648\u0645 \u{1F48C} \u0643\u0644\u0645\u0629 \u062A\u064F\u062F\u0641\u0626 \u0627\u0644\u0642\u0644\u0628 \u0642\u0628\u0644 \u0627\u0644\u0646\u0648\u0645" }) }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Group, { label: "\u062E\u0645\u0633 \u062F\u0642\u0627\u0626\u0642", heading: "\u0648\u0642\u0641\u0629 \u0622\u062E\u0631 \u0627\u0644\u064A\u0648\u0645 \u{1F319}", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TextField, { label: "\u0645\u0627 \u0627\u0644\u0630\u064A \u0623\u0646\u062A\u0650 \u0645\u0645\u062A\u0646\u0629 \u0644\u0647 \u0627\u0644\u064A\u0648\u0645\u061F", value: j3.g, onChange: (v) => setJ("g", v) }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TextField, { label: "\u0645\u0627 \u0627\u0644\u0630\u064A \u0642\u0635\u0651\u0631\u062A\u0650 \u0641\u064A\u0647\u060C \u0628\u0635\u062F\u0642 \u0648\u0628\u0644\u0627 \u0642\u0633\u0648\u0629\u061F", value: j3.s, onChange: (v) => setJ("s", v) }),
@@ -14915,6 +15116,24 @@ Error generating stack: ` + i.message + `
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(OfflineBackup, {}),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(DhikrSheet, { setKey: sheet, taps: sheet ? todayAdhkar[sheet] || [] : [], onTap: (i) => sheet && adhkarTap(sheet, i), onClose: () => setSheet(null) }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(MutlaqSheet, { open: mutlaqOpen, counts: todayMutlaq, onBump: mutlaqBump, onReset: mutlaqReset, onClose: () => setMutlaqOpen(false) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(FreeWirdSheet, { open: freeOpen, savedCount: freeWird[key] ?? null, ready: freeWirdSaved.ready, onSave: saveFreeWird, onClose: () => setFreeOpen(false) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TafsirSheet, { open: tafsirOpen, unit: tUnit, done: (day.st.wird_tafsir || 0) === 1, note: tafsirNotes[key] || "", ready: saved.ready && tafsirSaved.ready, onFinish: finishTafsir, onSaveNote: saveTafsirNote, onClose: () => setTafsirOpen(false) }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        DayMessage,
+        {
+          open: msgOpen,
+          name: dmName,
+          cls: dmCls,
+          idx: dmIdx,
+          missed: dmMissed,
+          suggestions: dmSugg,
+          onReport: () => {
+            setMsgOpen(false);
+            nav("/reports");
+          },
+          onClose: () => setMsgOpen(false)
+        }
+      ),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         NotePrompt,
         {
@@ -15861,6 +16080,88 @@ Error generating stack: ` + i.message + `
     for (let s = ss2; s <= es2; s++) segs.push({ s, from: s === ss2 ? sa2 : 1, to: s === es2 ? ea : QURAN.surahs[s - 1].count });
     return segs;
   };
+  var tafsirUnitFor = (dayKey) => {
+    const days = Math.round((Date.parse(dayKey + "T00:00:00Z") - Date.parse(WIRD_EPOCH + "T00:00:00Z")) / 864e5);
+    return (days % 60 + 60) % 60;
+  };
+  var todayTafsirUnit = () => tafsirUnitFor(cairoParts().d);
+  var TAFSIR_HALF = ["\u0627\u0644\u0623\u0648\u0644", "\u0627\u0644\u062B\u0627\u0646\u064A"];
+  var unitAyahs = (u) => {
+    const j3 = Math.floor(u / 2) + 1;
+    const half = u % 2;
+    const all = [];
+    for (const seg of juzSegments(j3)) for (let a = seg.from; a <= seg.to; a++) all.push({ s: seg.s, a });
+    const mid = Math.ceil(all.length / 2);
+    return half === 0 ? all.slice(0, mid) : all.slice(mid);
+  };
+  var tafsirUnitLabel = (u) => `\u0627\u0644\u0646\u0635\u0641 ${TAFSIR_HALF[u % 2]} \u0645\u0646 \u0627\u0644\u062C\u0632\u0621 ${JUZ_ORDINALS[Math.floor(u / 2)]}`;
+  function TafsirSheet({ open, unit, done, note, ready, onFinish, onSaveNote, onClose }) {
+    const ref = (0, import_react.useRef)(null);
+    const bodyRef = (0, import_react.useRef)(null);
+    const [draft, setDraft] = (0, import_react.useState)("");
+    (0, import_react.useEffect)(() => {
+      if (open) setDraft(note);
+    }, [open, note]);
+    if (open && ref.current && !ref.current.open) ref.current.showModal();
+    if (!open && ref.current?.open) ref.current.close();
+    if (!open) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("dialog", { ref, className: "mh-dialog mh-sheet" });
+    const ayahs = unitAyahs(unit);
+    const first = ayahs[0];
+    const last = ayahs[ayahs.length - 1];
+    let curS = -1;
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("dialog", { ref, className: "mh-dialog mh-sheet", onClose, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-dialog-head", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
+          "\u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631: ",
+          tafsirUnitLabel(unit),
+          " \u{1F4DC}"
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-dialog-x", onClick: onClose, "aria-label": "\u0625\u063A\u0644\u0627\u0642", children: "\u2715" })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-sheet-progress", children: [
+        "\u0645\u0646 \u0633\u0648\u0631\u0629 ",
+        QURAN.surahs[first.s - 1].name,
+        " \u0622\u064A\u0629 ",
+        ar2(first.a),
+        " \u0625\u0644\u0649 \u0633\u0648\u0631\u0629 ",
+        QURAN.surahs[last.s - 1].name,
+        " \u0622\u064A\u0629 ",
+        ar2(last.a),
+        " \u2014 \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0645\u064A\u0633\u0651\u0631"
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-sheet-body", ref: bodyRef, children: [
+        ayahs.map(({ s, a }) => {
+          const head = s !== curS ? (curS = s, /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-juzhead", children: [
+            "\uFD3F \u0633\u0648\u0631\u0629 ",
+            QURAN.surahs[s - 1].name,
+            " \uFD3E"
+          ] }, `h${s}`)) : null;
+          return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+            head,
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-quran", children: [
+              QURAN.surahs[s - 1].a[a - 1],
+              " ",
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-ayahnum", children: [
+                "\uFD3F",
+                ar2(a),
+                "\uFD3E"
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-tafsir-line", children: TAFSIR[s - 1][a - 1] })
+          ] }, `${s}:${a}`);
+        }),
+        !done ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button", "data-variant": "primary", disabled: !ready, onClick: onFinish, children: "\u0623\u0646\u0647\u064A\u062A \u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645 \u2713" }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-mutlaq", "data-done": true, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-mutlaq-head", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-mutlaq-text", children: "\u0645\u0627\u0630\u0627 \u062A\u0639\u0644\u0645\u062A\u0650 \u0627\u0644\u064A\u0648\u0645 \u0645\u0646 \u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631\u061F" }),
+            note && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-mutlaq-count", children: "\u0645\u062D\u0641\u0648\u0638 \u2713" })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("textarea", { className: "mh-todoin mh-tafsir-note", rows: 3, maxLength: 500, placeholder: "\u0627\u0643\u062A\u0628\u064A \u0622\u064A\u0629 \u0648\u0642\u0641\u062A\u0650 \u0639\u0646\u062F\u0647\u0627\u060C \u0623\u0648 \u0645\u0639\u0646\u0649 \u062C\u062F\u064A\u062F\u064B\u0627 \u062A\u0639\u0644\u0645\u062A\u0650\u0647\u2026", value: draft, disabled: !ready, onChange: (e6) => setDraft(e6.target.value) }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-habit-actions", style: { justifyContent: "center", marginTop: "8px" }, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "primary", disabled: !ready || !draft.trim(), onClick: () => onSaveNote(draft.trim()), children: "\u0627\u062D\u0641\u0638\u064A" }) })
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u0627\u0644\u0646\u0635 \u0645\u0646 \u0645\u0635\u062D\u0641 Tanzil \u0627\u0644\u0639\u062B\u0645\u0627\u0646\u064A\u060C \u0648\u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0645\u064A\u0633\u0651\u0631 \u0645\u0646 \u0645\u062C\u0645\u0639 \u0627\u0644\u0645\u0644\u0643 \u0641\u0647\u062F \u0644\u0637\u0628\u0627\u0639\u0629 \u0627\u0644\u0645\u0635\u062D\u0641 \u0627\u0644\u0634\u0631\u064A\u0641." })
+    ] });
+  }
   function WirdCard() {
     const nav = useNavigate();
     const tj = todayJuz();
@@ -16110,6 +16411,8 @@ Error generating stack: ` + i.message + `
     const [todos] = useLocalState("mh-todo.v1", {});
     const [mutlaq] = useLocalState("mh-mutlaq.v1", {});
     const [adhkarP] = useLocalState("mh-adhkar.v1", {});
+    const [freeWird] = useLocalState("mh-freewird.v1", {});
+    const [tafsirNotes] = useLocalState("mh-tafsir.v1", {});
     const [screen] = useLocalState("mh-screen.v1", {});
     const [name] = useLocalState("mh-name.v1", "\u0634\u0645\u0633");
     const [period, setPeriod] = (0, import_react.useState)("day");
@@ -16260,14 +16563,73 @@ Error generating stack: ` + i.message + `
             })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-report-sec", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 \u{1F33F}" }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "\u0648\u0631\u062F \u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u0627\u0644\u0645\u062D\u062F\u062F\u0629 \u{1F33F}" }),
             mutlaqRows.every((r) => r.sum === 0) ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-report-p", children: "\u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0645\u0646\u0647 \u0634\u064A\u0621 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0641\u062A\u0631\u0629." }) : mutlaqRows.map((r) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
               r.w.text,
               ": ",
               ar2(r.sum),
               period === "day" ? ` \u0645\u0646 ${ar2(r.w.target)}` : ` \u0630\u0643\u0631\u064B\u0627`,
               r.sum >= r.w.target && period === "day" ? " \u2014 \u062A\u0645\u0651 \u0627\u0644\u0647\u062F\u0641 \u2713" : ""
-            ] }, r.w.id))
+            ] }, r.w.id)),
+            (() => {
+              let freeSum = 0;
+              let freeDays = 0;
+              for (const d of days) {
+                const v = freeWird[isoDay(d)];
+                if (v != null) {
+                  freeSum += v;
+                  freeDays++;
+                }
+              }
+              if (freeDays === 0) return period === "day" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-report-p", children: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 (\u0627\u0644\u062D\u0631): \u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0627\u0644\u064A\u0648\u0645." }) : null;
+              return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
+                "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642 (\u0627\u0644\u062D\u0631): ",
+                ar2(period === "day" ? freeSum : freeSum),
+                " \u0630\u0643\u0631\u064B\u0627",
+                period !== "day" ? ` \u0639\u0628\u0631 ${ar2(freeDays)} \u064A\u0648\u0645` : " \u0627\u0644\u064A\u0648\u0645",
+                " \u2014 \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647"
+              ] });
+            })()
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-report-sec", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "\u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u{1F4DC}" }),
+            period === "day" ? daySel < WIRD_EPOCH ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-report-p", children: "\u0644\u0645 \u064A\u0643\u0646 \u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0642\u062F \u0628\u062F\u0623 \u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u064A\u0648\u0645." }) : /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
+                tafsirUnitLabel(tafsirUnitFor(daySel)),
+                " \u0645\u0646 \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0645\u064A\u0633\u0651\u0631: ",
+                (track[daySel] ? readDay(track, daySel).st.wird_tafsir : 0) === 1 ? "\u0623\u064F\u062A\u0645\u0651 \u0628\u062D\u0645\u062F \u0627\u0644\u0644\u0647 \u2713" : "\u0644\u0645 \u064A\u064F\u0633\u062C\u064E\u0651\u0644 \u0625\u062A\u0645\u0627\u0645\u0647"
+              ] }),
+              tafsirNotes[daySel] && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
+                "\u0641\u0627\u0626\u062F\u062A\u0643\u0650: ",
+                tafsirNotes[daySel]
+              ] })
+            ] }) : (() => {
+              let doneN = 0;
+              const notesList = [];
+              for (const d of days) {
+                const k = isoDay(d);
+                if (k < WIRD_EPOCH) continue;
+                const st2 = track[k] ? readDay(track, k).st : {};
+                if ((st2.wird_tafsir || 0) === 1) doneN++;
+                if (tafsirNotes[k]) notesList.push({ k, t: tafsirNotes[k] });
+              }
+              return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
+                  "\u0623\u062A\u0645\u0645\u062A\u0650 \u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0641\u064A ",
+                  ar2(doneN),
+                  " \u064A\u0648\u0645 \u0641\u064A \u0647\u0630\u0647 \u0627\u0644\u0641\u062A\u0631\u0629",
+                  doneN > 0 ? " \u2014 \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u062B\u0628\u0627\u062A \u062C\u0645\u064A\u0644" : ""
+                ] }),
+                notesList.map((x) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("p", { className: "mh-report-p", children: [
+                  "\u0641\u0627\u0626\u062F\u0629 \u064A\u0648\u0645 ",
+                  ar2(parseInt(x.k.slice(8), 10)),
+                  " ",
+                  MONTH_NAMES[parseInt(x.k.slice(5, 7), 10) - 1],
+                  ": ",
+                  x.t
+                ] }, x.k))
+              ] });
+            })()
           ] }),
           period === "day" && screen[daySel] && Object.keys(screen[daySel]).length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-report-sec", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: "\u0648\u0642\u062A \u0627\u0644\u0634\u0627\u0634\u0629 \u{1F4F1}" }),
