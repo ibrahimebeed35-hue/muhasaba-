@@ -1,4 +1,4 @@
-const CACHE = 'muhasaba-v8';
+const CACHE = 'muhasaba-v9';
 const ASSETS = [
  "./",
  "./index.html",
