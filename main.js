@@ -14351,7 +14351,19 @@ Error generating stack: ` + i.message + `
     }
     return out;
   }
-  var CHEERS = ["\u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u062B\u0628\u0627\u062A\u0643\u0650 \u0623\u062C\u0645\u0644 \u0645\u0646 \u0627\u0644\u0643\u0645\u0627\u0644 \u{1F33F}", "\u0623\u062D\u0633\u0646\u062A\u0650! \u062E\u0637\u0648\u0629 \u0635\u063A\u064A\u0631\u0629 \u062F\u0627\u0626\u0645\u0629 \u062E\u064A\u0631 \u0645\u0646 \u0643\u062B\u064A\u0631 \u0645\u0646\u0642\u0637\u0639 \u2728", "\u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u0645\u0646\u0643\u0650 \u{1F90D}", "\u0639\u0645\u0644 \u0642\u0644\u064A\u0644 \u062F\u0627\u0626\u0645 \u0623\u062D\u0628 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u{1F319}", "\u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064A\u0643\u0650\u060C \u0643\u0645\u0644\u064A \u0628\u0644\u0637\u0641 \u{1F338}"];
+  var DONE_CHEERS = ["\u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u0645\u0646\u0643\u0650 \u{1F90D}", "\u0623\u062D\u0633\u0646\u062A\u0650 \u2014 \u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u0623\u062F\u0648\u0645\u0647\u0627 \u0648\u0625\u0646 \u0642\u0644\u0651 \u{1F33F}", "\u062E\u0637\u0648\u0629 \u0635\u063A\u064A\u0631\u0629\u060C \u0648\u0623\u062C\u0631\u0647\u0627 \u0639\u0646\u062F \u0627\u0644\u0644\u0647 \u0643\u0628\u064A\u0631 \u2728", "\u062A\u064F\u0643\u062A\u0628 \u0644\u0643\u0650 \u0628\u0625\u0630\u0646 \u0627\u0644\u0644\u0647\u060C \u0643\u0645\u0651\u0644\u064A \u0628\u0644\u0637\u0641 \u{1F319}", "\u0646\u0648\u0631 \u0639\u0644\u0649 \u0646\u0648\u0631\u060C \u0628\u0627\u0631\u0643 \u0627\u0644\u0644\u0647 \u0641\u064A\u0643\u0650 \u{1F338}", "\u062B\u0628\u0627\u062A\u0643\u0650 \u0623\u062C\u0645\u0644 \u0645\u0646 \u0627\u0644\u0643\u0645\u0627\u0644\u060C \u0627\u0633\u062A\u0645\u0631\u064A \u{1F90D}", "\u0627\u0644\u0644\u0647 \u064A\u0631\u0649 \u0627\u062C\u062A\u0647\u0627\u062F\u0643\u0650\u060C \u0648\u0644\u0627 \u064A\u0636\u064A\u0639 \u0623\u062C\u0631 \u0627\u0644\u0645\u062D\u0633\u0646\u064A\u0646", "\u0643\u0644 \u062E\u0637\u0648\u0629 \u0644\u0643\u0650 \u0639\u0646\u062F \u0631\u0628\u0643\u0650 \u0634\u0627\u0647\u062F\u0629\u060C \u0623\u062D\u0633\u0646\u062A\u0650 \u2728"];
+  var QADA_CHEERS = ["\u0644\u0627 \u0644\u0648\u0645 \u0639\u0644\u064A\u0643\u0650 \u0623\u0628\u062F\u064B\u0627 \u2014 \u062A\u062F\u0627\u0631\u0643\u0650\u0647\u0627 \u062E\u064A\u0631 \u0645\u0646 \u062A\u0631\u0643\u0647\u0627\u060C \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u{1F90D}", "\u0631\u062D\u0645\u0629 \u0627\u0644\u0644\u0647 \u0623\u0648\u0633\u0639 \u0645\u0646 \u0643\u0644 \u0641\u0627\u0626\u062A\u060C \u0648\u0642\u0636\u0627\u0624\u0643\u0650 \u0645\u0633\u0624\u0648\u0644\u064A\u0629 \u062C\u0645\u064A\u0644\u0629 \u{1F33F}", "\u0645\u0627 \u062F\u0627\u0645 \u0628\u0627\u0628 \u0627\u0644\u062A\u0648\u0628\u0629 \u0645\u0641\u062A\u0648\u062D\u064B\u0627\u060C \u0641\u0623\u0646\u062A\u0650 \u0639\u0644\u0649 \u0627\u0644\u0637\u0631\u064A\u0642\u060C \u0643\u0645\u0651\u0644\u064A \u0628\u0631\u0627\u062D\u0629 \u{1F90D}", "\u0627\u0644\u0644\u0647 \u064A\u062D\u0628 \u0627\u0644\u062A\u0648\u0651\u0627\u0628\u064A\u0646 \u2014 \u0648\u0642\u0636\u0627\u0624\u0643\u0650 \u0639\u0648\u062F\u064C \u0645\u062D\u0628\u0648\u0628 \u{1F319}", "\u0644\u0627 \u062A\u0642\u0633\u064A \u0639\u0644\u0649 \u0646\u0641\u0633\u0643\u0650\u061B \u0627\u0644\u0645\u0647\u0645 \u0623\u0646\u0647\u0627 \u0635\u064F\u0644\u0651\u064A\u062A\u060C \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u2728"];
+  var ONTIME_CHEERS = ["\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627\u060C \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647 \u{1F54C} \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647", "\u0635\u0644\u0627\u0629 \u0641\u064A \u0648\u0642\u062A\u0647\u0627 \u2014 \u0645\u0646 \u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u{1F54C}", "\u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u0635\u0644\u0627\u0629 \u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627 \u062A\u062C\u0645\u0651\u0644 \u064A\u0648\u0645\u0643\u0650 \u0643\u0644\u0647 \u{1F90D}"];
+  var DAILY_MSGS = ["\xAB\u0648\u064E\u0645\u064E\u0646 \u064A\u064E\u062A\u064E\u0651\u0642\u0650 \u0627\u0644\u0644\u064E\u0651\u0647\u064E \u064A\u064E\u062C\u0652\u0639\u064E\u0644 \u0644\u064E\u0651\u0647\u064F \u0645\u064E\u062E\u0652\u0631\u064E\u062C\u064B\u0627\xBB \u2014 \u064A\u0648\u0645\u0643\u0650 \u0628\u062F\u0627\u064A\u0629 \u062C\u062F\u064A\u062F\u0629 \u{1F90D}", "\u0635\u0641\u062D\u0629 \u0628\u064A\u0636\u0627\u0621 \u0648\u0642\u0644\u0628 \u0635\u0627\u0641\u064D\u060C \u0627\u0628\u062F\u0626\u064A \u0628\u0633\u0645 \u0627\u0644\u0644\u0647 \u{1F33F}", "\u0623\u062D\u0628 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0625\u0644\u0649 \u0627\u0644\u0644\u0647 \u0623\u062F\u0648\u0645\u0647\u0627 \u0648\u0625\u0646 \u0642\u0644\u0651 \u2014 \u062E\u0637\u0648\u0629 \u0627\u0644\u064A\u0648\u0645 \u062A\u0643\u0641\u064A", "\xAB\u0641\u0627\u0630\u0643\u0631\u0648\u0646\u064A \u0623\u0630\u0643\u0631\u0643\u0645\xBB \u2014 \u0627\u062C\u0639\u0644\u064A \u0644\u0643\u0650 \u0646\u0635\u064A\u0628\u064B\u0627 \u0645\u0646 \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u064A\u0648\u0645", "\u0645\u0627 \u0639\u0646\u062F \u0627\u0644\u0644\u0647 \u0644\u0627 \u064A\u0646\u0641\u062F\u060C \u0627\u0637\u0644\u0628\u064A \u0648\u062A\u0648\u0643\u0651\u0644\u064A \u0628\u0647\u062F\u0648\u0621 \u{1F90D}", "\xAB\u0625\u0650\u0646\u064E\u0651 \u0645\u064E\u0639\u064E \u0627\u0644\u0652\u0639\u064F\u0633\u0652\u0631\u0650 \u064A\u064F\u0633\u0652\u0631\u064B\u0627\xBB \u2014 \u0648\u0639\u062F\u064C \u0644\u0627 \u064A\u062A\u062E\u0644\u0651\u0641", "\u064A\u0648\u0645\u0643\u0650 \u0645\u0646 \u0639\u0645\u0631\u0643\u0650\u060C \u0627\u062C\u0639\u0644\u064A\u0647 \u0634\u0627\u0647\u062F\u064B\u0627 \u0644\u0643\u0650 \u0644\u0627 \u0639\u0644\u064A\u0643\u0650", "\u0627\u0644\u0644\u0637\u0641 \u0628\u0627\u0644\u0646\u0641\u0633 \u0639\u0628\u0627\u062F\u0629 \u0623\u064A\u0636\u064B\u0627\u060C \u0628\u0644\u0627 \u0642\u0633\u0648\u0629 \u0648\u0644\u0627 \u0644\u0648\u0645 \u{1F338}", "\xAB\u0623\u064E\u0644\u064E\u0627 \u0628\u0650\u0630\u0650\u0643\u0652\u0631\u0650 \u0627\u0644\u0644\u064E\u0651\u0647\u0650 \u062A\u064E\u0637\u0652\u0645\u064E\u0626\u0650\u0646\u064F\u0651 \u0627\u0644\u0652\u0642\u064F\u0644\u064F\u0648\u0628\u064F\xBB", "\u0627\u0633\u062A\u063A\u0641\u0627\u0631 \u0627\u0644\u0635\u0628\u0627\u062D \u064A\u0641\u062A\u062D \u0627\u0644\u064A\u0648\u0645 \u0628\u0627\u0644\u0646\u0648\u0631 \u2728", "\u0644\u0627 \u062A\u0633\u062A\u0635\u063A\u0631\u064A \u062D\u0633\u0646\u0629\u060C \u0641\u0627\u0644\u0642\u0637\u0631\u0629 \u062A\u0635\u0646\u0639 \u0627\u0644\u0646\u0647\u0631 \u{1F319}", "\u0646\u064A\u062A\u0643\u0650 \u0627\u0644\u0635\u0627\u062F\u0642\u0629 \u062A\u062D\u0648\u0651\u0644 \u0627\u0644\u0639\u0627\u062F\u0629 \u0625\u0644\u0649 \u0639\u0628\u0627\u062F\u0629 \u{1F90D}", "\u0631\u0628\u0643\u0650 \u064A\u0631\u0627\u0643\u0650 \u0648\u0623\u0646\u062A\u0650 \u062A\u062D\u0627\u0648\u0644\u064A\u0646\u060C \u0648\u0647\u0630\u0627 \u064A\u0643\u0641\u064A\u0643\u0650", "\u062E\u064A\u0631 \u0627\u0644\u0623\u0639\u0645\u0627\u0644 \u0623\u062F\u0648\u0645\u0647\u0627 \u0648\u0625\u0646 \u0642\u0644\u0651 \u2014 \u0646\u0643\u0645\u0644 \u0645\u0639\u064B\u0627 \u0627\u0644\u064A\u0648\u0645 \u{1F33F}"];
+  var lastDone = { i: -1 };
+  var lastQada = { i: -1 };
+  var lastOn = { i: -1 };
+  var pickNoRepeat = (arr, last) => {
+    let i = Math.floor(Math.random() * arr.length);
+    if (arr.length > 1 && i === last.i) i = (i + 1) % arr.length;
+    last.i = i;
+    return arr[i];
+  };
   function Tick({ value, onTap, label }) {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-circle", "data-st": value, "aria-label": label, onClick: onTap, children: value === 1 ? "\u2713" : value === 2 ? "\u2717" : "" });
   }
@@ -14382,20 +14394,34 @@ Error generating stack: ` + i.message + `
       if (!saved.ready) return;
       setTrack(pruned({ ...track, [key]: writeDay(st2, istighfar), __mig: track.__mig || "1" }, 400));
     };
+    (0, import_react.useEffect)(() => {
+      if (!cheer) return;
+      const t = setTimeout(() => setCheer(null), 4500);
+      return () => clearTimeout(t);
+    }, [cheer]);
     const cycle = (id2, label) => {
       const next = ((day.st[id2] || 0) + 1) % 3;
       save({ ...day.st, [id2]: next }, day.istighfar);
-      if (next === 1) setCheer(CHEERS[Math.floor(Math.random() * CHEERS.length)]);
+      if (next === 1) setCheer(pickNoRepeat(DONE_CHEERS, lastDone));
       else setCheer(null);
     };
-    const bump = (n) => save(day.st, Math.max(day.istighfar + n, 0));
+    const bump = (n) => {
+      const t = day.istighfar + n;
+      save(day.st, Math.max(t, 0));
+      if (n > 0 && day.istighfar < ISTIGHFAR_TARGET && t >= ISTIGHFAR_TARGET) setCheer("\u0628\u0644\u063A\u062A\u0650 \u0645\u0626\u0629 \u0627\u0633\u062A\u063A\u0641\u0627\u0631 \u0627\u0644\u064A\u0648\u0645 \u2014 \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u0642\u0644\u0628 \u064A\u0630\u0643\u0631 \u0627\u0644\u0644\u0647 \u{1F90D}");
+    };
     const PHOTO_IDS = /* @__PURE__ */ new Set(["fajr", "dhuhr", "asr", "maghrib", "isha", "qiyam"]);
     const FARD = /* @__PURE__ */ new Set(["fajr", "dhuhr", "asr", "maghrib", "isha"]);
     const setPrayerStatus = (id2, v) => {
       if (!pssaved.ready) return;
       const todaySt = { ...pstat[key] || {} };
-      if (todaySt[id2] === v) delete todaySt[id2];
-      else todaySt[id2] = v;
+      if (todaySt[id2] === v) {
+        delete todaySt[id2];
+        setCheer(null);
+      } else {
+        todaySt[id2] = v;
+        setCheer(v === "qd" ? pickNoRepeat(QADA_CHEERS, lastQada) : pickNoRepeat(ONTIME_CHEERS, lastOn));
+      }
       const next = { ...pstat, [key]: todaySt };
       const dayKeys = Object.keys(next).sort();
       while (dayKeys.length > 400) delete next[dayKeys.shift()];
@@ -14477,6 +14503,7 @@ Error generating stack: ` + i.message + `
     ] }, h.id);
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Band, { kicker: "\u0635\u0641\u062D\u0629 \u062C\u062F\u064A\u062F\u0629 \u0628\u064A\u0636\u0627\u0621", title: "\u0627\u0644\u064A\u0648\u0645", meta: `${fmtDay(today)} \u2014 \u0639\u0644\u0651\u0645\u064A \u0645\u0627 \u0641\u0639\u0644\u062A\u0650\u0647 \u0641\u0642\u0637\u060C \u0628\u0644\u0627 \u0644\u0648\u0645` }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-daily", children: DAILY_MSGS[Math.floor((Date.parse(key + "T00:00:00Z") - Date.parse("2026-01-01T00:00:00Z")) / 864e5) % DAILY_MSGS.length] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Group, { label: "\u0639\u0628\u0627\u062F\u0627\u062A \u0627\u0644\u064A\u0648\u0645 \u{1F33F}", children: [
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-counters", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-counterbox", "data-kind": "good", children: [
@@ -14559,6 +14586,12 @@ Error generating stack: ` + i.message + `
     const today = cairoParts().d;
     const [lists, setLists, saved] = useLocalState("mh-todo.v1", {});
     const [draft, setDraft] = (0, import_react.useState)("");
+    const [cheer, setCheer] = (0, import_react.useState)(null);
+    (0, import_react.useEffect)(() => {
+      if (!cheer) return;
+      const t = setTimeout(() => setCheer(null), 4500);
+      return () => clearTimeout(t);
+    }, [cheer]);
     const items = lists[today] || [];
     const write = (next) => {
       if (!saved.ready) return;
@@ -14598,7 +14631,10 @@ Error generating stack: ` + i.message + `
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-habit-name", "data-done": it2.done || void 0, children: it2.t }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-actions", children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-tododel", "aria-label": `\u0627\u062D\u0630\u0641\u064A: ${it2.t}`, onClick: () => write(items.filter((_, j3) => j3 !== i)), children: "\u2715" }),
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tick, { value: it2.done ? 1 : 0, label: it2.t, onTap: () => write(items.map((x, j3) => j3 === i ? { ...x, done: !x.done } : x)) })
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tick, { value: it2.done ? 1 : 0, label: it2.t, onTap: () => {
+            if (!it2.done) setCheer(pickNoRepeat(DONE_CHEERS, lastDone));
+            write(items.map((x, j3) => j3 === i ? { ...x, done: !x.done } : x));
+          } })
         ] })
       ] }, `${i}-${it2.t}`)),
       items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Caption, { children: [
@@ -14609,7 +14645,8 @@ Error generating stack: ` + i.message + `
         " \u0627\u0644\u064A\u0648\u0645",
         doneCount === items.length ? " \u2014 \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u0627\u0643\u062A\u0645\u0644 \u0627\u0644\u064A\u0648\u0645 \u{1F90D}" : "",
         ". \u0642\u0627\u0626\u0645\u0629 \u0643\u0644 \u064A\u0648\u0645 \u062A\u064F\u062D\u0641\u0638 \u0639\u0644\u0649 \u062C\u0647\u0627\u0632\u0643\u0650 \u0628\u062A\u0627\u0631\u064A\u062E\u0647\u0627\u060C \u0648\u0623\u0648\u0644 \u0627\u0644\u0642\u0627\u0626\u0645\u0629 \u062F\u0627\u0626\u0645\u064B\u0627 \u0645\u0647\u0627\u0645 \u064A\u0648\u0645\u0643\u0650 \u0647\u0630\u0627."
-      ] })
+      ] }),
+      cheer && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-cheer", onClick: () => setCheer(null), children: cheer })
     ] });
   }
   var cairoParts = () => {
