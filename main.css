@@ -186,7 +186,7 @@ body {
 }
 .file-nav {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   background: var(--mh-band);
   border: none;
   border-radius: 12px;
@@ -238,16 +238,16 @@ body {
 }
 @media (max-width: 600px) {
   .file-nav {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
   .file-nav a {
     min-height: 0;
     padding: 10px 8px 9px;
   }
-  .file-nav a:nth-child(3) {
+  .file-nav a:nth-child(3n+1) {
     border-inline-start: none;
   }
-  .file-nav a:nth-child(n+3) {
+  .file-nav a:nth-child(n+4) {
     border-top: 1px solid rgb(244 236 223 / 0.14);
   }
 }
@@ -1100,4 +1100,247 @@ body {
   flex-wrap: wrap;
   margin-bottom: 8px;
   margin-top: 6px;
+}
+.mh-sheet {
+  max-width: min(560px, 94vw);
+  width: 94vw;
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+}
+.mh-sheet-progress {
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mh-green);
+  margin: 2px 0 8px;
+}
+.mh-sheet-body {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2px;
+}
+.mh-dhikr {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: right;
+  cursor: pointer;
+  border: 1.5px solid var(--mh-ink);
+  border-radius: 14px;
+  background: var(--mh-cream);
+  padding: 14px 16px 12px;
+}
+.mh-dhikr[data-done] {
+  opacity: 0.55;
+  border-style: dashed;
+  cursor: default;
+}
+.mh-dhikr-text {
+  font-family:
+    "Aref Ruqaa",
+    "Cairo",
+    serif;
+  font-size: 17px;
+  line-height: 2;
+  color: var(--mh-ink);
+}
+.mh-dhikr-fadl {
+  font-family: "Cairo", sans-serif;
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--ds-ink-2);
+}
+.mh-dhikr-foot {
+  display: flex;
+  justify-content: flex-start;
+}
+.mh-dhikr-left {
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mh-green);
+}
+.mh-dhikr-left b {
+  font-size: 16px;
+}
+.mh-dhikr-done {
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--mh-green);
+}
+.mh-mutlaq {
+  border: 1.5px solid var(--mh-ink);
+  border-radius: 14px;
+  background: var(--mh-cream);
+  padding: 12px 14px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mh-mutlaq[data-done] {
+  opacity: 0.6;
+  border-style: dashed;
+}
+.mh-mutlaq-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.mh-mutlaq-text {
+  font-family:
+    "Aref Ruqaa",
+    "Cairo",
+    serif;
+  font-size: 16.5px;
+  line-height: 1.9;
+  color: var(--mh-ink);
+}
+.mh-mutlaq-count {
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--mh-green);
+  white-space: nowrap;
+}
+.mh-mutlaq-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgb(43 28 16 / 0.12);
+  overflow: hidden;
+}
+.mh-mutlaq-bar i {
+  display: block;
+  height: 100%;
+  background: var(--mh-green);
+  border-radius: 999px;
+  transition: width 0.2s ease;
+}
+.mh-mutlaq-btns {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.mh-cbtn-reset {
+  opacity: 0.6;
+}
+.mh-openlist {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  text-align: right;
+  border-bottom: 1.5px dotted var(--mh-green);
+}
+.mh-missnote {
+  display: block;
+  border: none;
+  background: none;
+  padding: 2px 0 0;
+  cursor: pointer;
+  text-align: right;
+  font-family: "Cairo", sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--mh-terra);
+}
+.mh-note-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+.mh-report-date {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.mh-report {
+  border: 2px solid var(--mh-ink);
+  border-radius: 14px;
+  background: var(--mh-cream);
+  padding: 16px 18px;
+  margin: 10px 0;
+}
+.mh-report-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  border-bottom: 2px solid var(--mh-ink);
+  padding-bottom: 8px;
+  margin-bottom: 6px;
+}
+.mh-report-head b {
+  font-family:
+    "Aref Ruqaa",
+    "Cairo",
+    serif;
+  font-size: 19px;
+  color: var(--mh-green);
+}
+.mh-report-head span {
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ds-ink-2);
+}
+.mh-report-sec h3 {
+  font-family:
+    "Aref Ruqaa",
+    "Cairo",
+    serif;
+  font-size: 16px;
+  color: var(--mh-green);
+  margin: 14px 0 4px;
+}
+.mh-report-p {
+  font-family: "Cairo", sans-serif;
+  font-size: 14px;
+  line-height: 2;
+  margin: 2px 0;
+  color: var(--mh-ink);
+}
+.mh-report-reasons {
+  display: block;
+  font-size: 12.5px;
+  color: var(--mh-terra);
+}
+.mh-report-foot {
+  border-top: 1px solid var(--ds-hairline);
+  margin-top: 12px;
+  padding-top: 8px;
+  font-family: "Cairo", sans-serif;
+  font-size: 11.5px;
+  color: var(--ds-ink-2);
+}
+@media print {
+  @page {
+    margin: 14mm;
+  }
+  body * {
+    visibility: hidden;
+  }
+  .mh-printzone,
+  .mh-printzone * {
+    visibility: visible;
+  }
+  .mh-printzone {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    border: none;
+    border-radius: 0;
+  }
+}
+.mh-sheet:not([open]) {
+  display: none;
+}
+.mh-screenin {
+  max-width: 76px;
 }
