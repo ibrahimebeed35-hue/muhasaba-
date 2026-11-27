@@ -14396,8 +14396,18 @@ Error generating stack: ` + i.message + `
     { id: "wird_hurr", label: "\u0648\u0631\u062F \u0627\u0644\u0630\u0643\u0631 \u0627\u0644\u0645\u0637\u0644\u0642", hint: "\u0627\u0643\u062A\u0628\u064A \u0639\u062F\u062F \u0645\u0627 \u0630\u0643\u0631\u062A\u0650\u0647 \u0627\u0644\u064A\u0648\u0645\u060C \u0628\u0644\u0627 \u0647\u062F\u0641 \u0645\u062D\u062F\u062F", group: "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" },
     // الموضع ٤٣
     { id: "wird_tafsir", label: "\u0648\u0631\u062F \u0627\u0644\u062A\u0641\u0633\u064A\u0631", hint: "\u0646\u0635\u0641 \u062C\u0632\u0621 \u064A\u0648\u0645\u064A\u064B\u0627 \u0645\u0646 \u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0645\u064A\u0633\u0651\u0631", group: "\u0627\u0644\u0642\u0631\u0622\u0646" },
-    { id: "s_baqarah", label: "\u0642\u0631\u0627\u0621\u0629 \u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629", hint: "\u064A\u0648\u0645 \u0627\u0644\u062C\u0645\u0639\u0629", group: "\u0627\u0644\u0642\u0631\u0622\u0646", days: [5] },
-    { id: "s_mulk", label: "\u0642\u0631\u0627\u0621\u0629 \u0633\u0648\u0631\u0629 \u0627\u0644\u0645\u0644\u0643", hint: "\u0643\u0644 \u0644\u064A\u0644\u0629 \u0642\u0628\u0644 \u0627\u0644\u0646\u0648\u0645", group: "\u0627\u0644\u0642\u0631\u0622\u0646" }
+    { id: "s_kahf", label: "\u0642\u0631\u0627\u0621\u0629 \u0633\u0648\u0631\u0629 \u0627\u0644\u0643\u0647\u0641", hint: "\u064A\u0648\u0645 \u0627\u0644\u062C\u0645\u0639\u0629", group: "\u0627\u0644\u0642\u0631\u0622\u0646", days: [5] },
+    { id: "s_mulk", label: "\u0642\u0631\u0627\u0621\u0629 \u0633\u0648\u0631\u0629 \u0627\u0644\u0645\u0644\u0643", hint: "\u0643\u0644 \u0644\u064A\u0644\u0629 \u0642\u0628\u0644 \u0627\u0644\u0646\u0648\u0645", group: "\u0627\u0644\u0642\u0631\u0622\u0646" },
+    { id: "fajr_baad", label: "\u0623\u0630\u0643\u0627\u0631 \u0628\u0639\u062F \u0627\u0644\u0635\u0644\u0627\u0629", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "dhuhr_baad", label: "\u0623\u0630\u0643\u0627\u0631 \u0628\u0639\u062F \u0627\u0644\u0635\u0644\u0627\u0629", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "asr_baad", label: "\u0623\u0630\u0643\u0627\u0631 \u0628\u0639\u062F \u0627\u0644\u0635\u0644\u0627\u0629", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "maghrib_baad", label: "\u0623\u0630\u0643\u0627\u0631 \u0628\u0639\u062F \u0627\u0644\u0635\u0644\u0627\u0629", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "isha_baad", label: "\u0623\u0630\u0643\u0627\u0631 \u0628\u0639\u062F \u0627\u0644\u0635\u0644\u0627\u0629", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "fajr_baqarah", label: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0662-\u0661\u0661)", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "dhuhr_baqarah", label: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0661\u0662-\u0662\u0661)", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "asr_baqarah", label: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0662\u0662-\u0663\u0661)", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "maghrib_baqarah", label: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0663\u0662-\u0664\u0661)", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" },
+    { id: "isha_baqarah", label: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0668 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0664\u0662-\u0664\u0669)", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }
   ];
   var CHECK_IDS = CHECK_HABITS.map((h) => h.id);
   var OLD_IDS = ["fajr", "dhuhr", "asr", "maghrib", "isha", "sunnah_fajr", "sunnah_dhuhr", "duha", "witr", "quran", "fast", "adhkar_sabah", "adhkar_masaa"];
@@ -14417,7 +14427,10 @@ Error generating stack: ` + i.message + `
     return CHECK_IDS.map((id2) => String(st2[id2] || 0)).join("") + "," + String(istighfar || 0);
   }
   var V5_EPOCH = "2026-11-27";
-  var V5_IDS = /* @__PURE__ */ new Set([...PRAYER_EXTRA_HABITS.map((h) => h.id), "wird_mutlaq", "adhkar_nawm", "wird_hurr", "wird_tafsir", "s_baqarah", "s_mulk"]);
+  var PRAYER_BAAD_HABITS = PRAYERS.map((p) => ({ id: `${p.id}_baad`, label: "\u0623\u0630\u0643\u0627\u0631 \u0628\u0639\u062F \u0627\u0644\u0635\u0644\u0627\u0629", group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }));
+  var BAQARAH_SPLIT = { fajr: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0662-\u0661\u0661)", dhuhr: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0661\u0662-\u0662\u0661)", asr: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0662\u0662-\u0663\u0661)", maghrib: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0661\u0660 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0663\u0662-\u0664\u0661)", isha: "\u0633\u0648\u0631\u0629 \u0627\u0644\u0628\u0642\u0631\u0629: \u0668 \u0635\u0641\u062D\u0627\u062A (\u0635 \u0664\u0662-\u0664\u0669)" };
+  var PRAYER_BAQARAH_HABITS = PRAYERS.map((p) => ({ id: `${p.id}_baqarah`, label: BAQARAH_SPLIT[p.id], group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }));
+  var V5_IDS = /* @__PURE__ */ new Set([...PRAYER_EXTRA_HABITS.map((h) => h.id), "wird_mutlaq", "adhkar_nawm", "wird_hurr", "wird_tafsir", "s_kahf", "s_mulk", ...PRAYER_BAAD_HABITS.map((h) => h.id), ...PRAYER_BAQARAH_HABITS.map((h) => h.id)]);
   var HABIT_DAYS = Object.fromEntries(CHECK_HABITS.filter((h) => h.days).map((h) => [h.id, h.days]));
   function applicable(weekday, day) {
     return CHECK_IDS.filter((id2) => (!HABIT_DAYS[id2] || HABIT_DAYS[id2].includes(weekday)) && (!V5_IDS.has(id2) || day >= V5_EPOCH));
@@ -15038,7 +15051,9 @@ Error generating stack: ` + i.message + `
         PRAYERS.map((p) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-prayerblock", children: [
           groupRow({ id: p.id, label: p.label, group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }),
           p.subs.map((s) => groupRow({ id: s.id, label: s.label, group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }, true)),
-          PRAYER_EXTRA_HABITS.filter((h) => h.id.startsWith(p.id + "_")).map((h) => groupRow(h, true))
+          PRAYER_EXTRA_HABITS.filter((h) => h.id.startsWith(p.id + "_")).map((h) => groupRow(h, true)),
+          PRAYER_BAAD_HABITS.filter((h) => h.id.startsWith(p.id + "_")).map((h) => groupRow(h, true)),
+          PRAYER_BAQARAH_HABITS.filter((h) => h.id.startsWith(p.id + "_")).map((h) => groupRow(h, true))
         ] }, p.id)),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u0628\u062C\u0627\u0646\u0628 \u0643\u0644 \u0641\u0631\u0636 \u0627\u062E\u062A\u0627\u0631\u064A: \xAB\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627\xBB \u0623\u0648 \xAB\u0642\u0636\u0627\u0621\xBB - \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631 \u064A\u0639\u0644\u0651\u0645 \u0627\u0644\u0635\u0644\u0627\u0629 \u0643\u0645\u0635\u0644\u0651\u0627\u0629\u060C \u0648\u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631 \u0646\u0641\u0633\u0647 \u0645\u062C\u062F\u062F\u064B\u0627 \u0644\u0625\u0644\u063A\u0627\u0626\u0647. \u{1F4F7} \u0648\u0628\u0627\u0644\u0635\u0648\u0631\u0629: \u0627\u0644\u062A\u0642\u0637\u064A \u0635\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u0644\u0633\u062C\u0627\u062F\u062A\u0643\u0650 \u0641\u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0627\u0644\u0635\u0644\u0627\u0629 \u062A\u0644\u0642\u0627\u0626\u064A\u064B\u0627 \xAB\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627\xBB \u0645\u0639 \u0648\u0642\u062A\u0647\u0627. \u0627\u0644\u0635\u0648\u0631\u0629 \u0644\u0627 \u062A\u064F\u0631\u0641\u0639 \u0644\u0623\u064A \u0645\u0643\u0627\u0646 \u0648\u0644\u0627 \u062A\u064F\u062A\u062D\u0642\u0642 \u0622\u0644\u064A\u064B\u0627\u060C \u0647\u064A \u0639\u0647\u062F \u0628\u064A\u0646\u0643\u0650 \u0648\u0628\u064A\u0646 \u0646\u0641\u0633\u0643\u0650\u060C \u0648\u0627\u0644\u062A\u0639\u0644\u064A\u0645 \u0627\u0644\u064A\u062F\u0648\u064A \u0645\u062A\u0627\u062D \u062F\u0627\u0626\u0645\u064B\u0627." }),
         ["\u0627\u0644\u0646\u0648\u0627\u0641\u0644", "\u0627\u0644\u0642\u0631\u0622\u0646", "\u0627\u0644\u0635\u064A\u0627\u0645", "\u0627\u0644\u0623\u0630\u0643\u0627\u0631", "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629"].filter((g) => CHECK_HABITS.some((h) => h.group === g && (!h.days || h.days.includes(today.getDay())))).map((g) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
@@ -16384,7 +16399,10 @@ Error generating stack: ` + i.message + `
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
           list.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("button", { type: "button", className: "mh-surah", onClick: () => openSurah(s.n), children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "n", children: ar2(s.n) }),
-            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "nm", children: s.name }),
+            /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "nm", children: [
+              "\u0633\u0648\u0631\u0629 ",
+              s.name
+            ] }),
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "ct", children: [
               ar2(s.count),
               " \u0622\u064A\u0629"
