@@ -16,7 +16,17 @@
 <body>
 <div id="root"></div>
 <script>window.instinctFile={initialRoute:"/",route:function(){},request:function(method,params){var P="mh-offline:";try{if(method==="local.read"){var v=localStorage.getItem(P+params.key);return Promise.resolve(v==null?{status:"memory"}:{status:"saved",value:v})}if(method==="local.write"){localStorage.setItem(P+params.key,params.value);return Promise.resolve({status:"saved"})}if(method==="context")return Promise.resolve({isOwnerUser:true})}catch(e){}return Promise.resolve({status:"unavailable"})}};</script>
-<script>if("serviceWorker"in navigator){window.addEventListener("load",function(){navigator.serviceWorker.register("./sw.js").catch(function(){})})}</script>
+<script>if("serviceWorker"in navigator){window.addEventListener("load",function(){
+var had=!!navigator.serviceWorker.controller, reloaded=false;
+navigator.serviceWorker.register("./sw.js").then(function(reg){setInterval(function(){reg.update().catch(function(){})},300000);document.addEventListener("visibilitychange",function(){if(!document.hidden)reg.update().catch(function(){})})}).catch(function(){});
+navigator.serviceWorker.addEventListener("controllerchange",function(){
+if(!had||reloaded)return; reloaded=true;
+var d=document.createElement("div");
+d.style.cssText="position:fixed;bottom:14px;left:14px;right:14px;z-index:99999;background:#3b2a18;color:#f7ead2;padding:14px 18px;border-radius:16px;text-align:center;box-shadow:0 4px 18px rgba(0,0,0,.35);cursor:pointer;font-size:15px";
+d.textContent="نُزّلت نسخة جديدة من التطبيق — اضغطي هنا للتحديث 🤍";
+d.onclick=function(){location.reload()};
+document.body.appendChild(d);
+});})}</script>
 <script src="./main.js"></script>
 </body>
 </html>

@@ -1,4 +1,4 @@
-const CACHE = 'muhasaba-v6';
+const CACHE = 'muhasaba-v8';
 const ASSETS = [
  "./",
  "./index.html",
@@ -35,6 +35,18 @@ self.addEventListener('activate', (e) => {
 });
 self.addEventListener('fetch', (e) => {
     if (e.request.method !== 'GET') return;
+    const p = new URL(e.request.url).pathname;
+    if (p.endsWith('/update.html') || p.endsWith('/sw.js')) { e.respondWith(fetch(e.request)); return; }
+    const core = e.request.mode === 'navigate' || p.endsWith('/') || p.endsWith('/index.html') || p.endsWith('/main.js') || p.endsWith('/main.css');
+    if (core) {
+        e.respondWith(
+            fetch(e.request).then((res) => {
+                if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(e.request, copy)); }
+                return res;
+            }).catch(() => caches.match(e.request, { ignoreSearch: true }).then((hit) => hit || caches.match('./index.html')))
+        );
+        return;
+    }
     e.respondWith(
         caches.match(e.request, { ignoreSearch: true }).then((hit) => hit || fetch(e.request).then((res) => {
             if (res.ok) { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(e.request, copy)); }
