@@ -14360,8 +14360,8 @@ Error generating stack: ` + i.message + `
     const [oldTrack, , oldSaved] = useLocalState("mh-track.v1", {});
     const [journal, setJournal, jsaved] = useLocalState("mh-journal.v2", {});
     const [oldJournal] = useLocalState("mh-journal.v1", {});
-    const [wird, setWird, wsaved] = useLocalState("mh-wird.v1", "half");
     const [pp2, setPp] = useLocalState("mh-pp.v1", {});
+    const [pstat, setPstat, pssaved] = useLocalState("mh-pstatus.v1", {});
     const [cheer, setCheer] = (0, import_react.useState)(null);
     const [staleFor, setStaleFor] = (0, import_react.useState)(null);
     const today = /* @__PURE__ */ new Date();
@@ -14390,6 +14390,18 @@ Error generating stack: ` + i.message + `
     };
     const bump = (n) => save(day.st, Math.max(day.istighfar + n, 0));
     const PHOTO_IDS = /* @__PURE__ */ new Set(["fajr", "dhuhr", "asr", "maghrib", "isha", "qiyam"]);
+    const FARD = /* @__PURE__ */ new Set(["fajr", "dhuhr", "asr", "maghrib", "isha"]);
+    const setPrayerStatus = (id2, v) => {
+      if (!pssaved.ready) return;
+      const todaySt = { ...pstat[key] || {} };
+      if (todaySt[id2] === v) delete todaySt[id2];
+      else todaySt[id2] = v;
+      const next = { ...pstat, [key]: todaySt };
+      const dayKeys = Object.keys(next).sort();
+      while (dayKeys.length > 400) delete next[dayKeys.shift()];
+      setPstat(next);
+      if (todaySt[id2] && (day.st[id2] || 0) !== 1) save({ ...day.st, [id2]: 1 }, day.istighfar);
+    };
     const logPrayerPhoto = (id2, label, f) => {
       if (!f || !saved.ready) return;
       setStaleFor(null);
@@ -14403,6 +14415,10 @@ Error generating stack: ` + i.message + `
       while (dayKeys.length > 14) delete next[dayKeys.shift()];
       setPp(next);
       save({ ...day.st, [id2]: 1 }, day.istighfar);
+      if (FARD.has(id2) && !pstat[key]?.[id2]) {
+        const pst = { ...pstat, [key]: { ...pstat[key] || {}, [id2]: "on" } };
+        setPstat(pst);
+      }
       setCheer(`\u0633\u064F\u062C\u0651\u0644\u062A ${label} \u0628\u0627\u0644\u0635\u0648\u0631\u0629 ${ar2(now.hm)} \u2014 \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u{1F90D}`);
     };
     const j3 = journal[key] || { g: "", s: "", t: "", h: "", b: "" };
@@ -14413,9 +14429,8 @@ Error generating stack: ` + i.message + `
       while (keys.length > 21) delete next[keys.shift()];
       setJournal(next);
     };
-    const WIRD_OPTS = [{ value: "page", label: "\u0635\u0641\u062D\u0629" }, { value: "half", label: "\u0646\u0635\u0641 \u062C\u0632\u0621" }, { value: "juz", label: "\u062C\u0632\u0621 \u0643\u0627\u0645\u0644" }];
-    const wirdLabel = WIRD_OPTS.find((o) => o.value === wird)?.label || "\u0646\u0635\u0641 \u062C\u0632\u0621";
-    const HINT = { quran: `\u0647\u062F\u0641\u0643\u0650: ${wirdLabel}` };
+    const tj = todayJuz();
+    const HINT = { quran: `\u0648\u0631\u062F\u0643\u0650 \u0627\u0644\u064A\u0648\u0645: \u0627\u0644\u062C\u0632\u0621 ${JUZ_ORDINALS[tj - 1]} (${ar2(tj)} \u0645\u0646 \u0663\u0660)` };
     const groupRow = (h, sub) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: sub ? "mh-habit mh-sub" : "mh-habit", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-name", children: [
         h.label,
@@ -14425,9 +14440,22 @@ Error generating stack: ` + i.message + `
           ar2(pp2[key][h.id]),
           " \u2713"
         ] }),
-        staleFor === h.id && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-habit-hint mh-stale", children: "\u0627\u0644\u0635\u0648\u0631\u0629 \u0642\u062F\u064A\u0645\u0629\u060C \u0627\u0644\u062A\u0642\u0637\u064A \u0635\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u0627\u0644\u0622\u0646" })
+        staleFor === h.id && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-habit-hint mh-stale", children: "\u0627\u0644\u0635\u0648\u0631\u0629 \u0642\u062F\u064A\u0645\u0629\u060C \u0627\u0644\u062A\u0642\u0637\u064A \u0635\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u0627\u0644\u0622\u0646" }),
+        FARD.has(h.id) && pstat[key]?.[h.id] && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-habit-hint", children: pstat[key][h.id] === "on" ? "\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627 \u{1F54C}" : "\u0642\u0636\u0627\u0621\u064B\u060C \u062A\u0642\u0628\u0651\u0644 \u0627\u0644\u0644\u0647 \u{1F90D}" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-actions", children: [
+        FARD.has(h.id) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-pstatus", role: "group", "aria-label": `\u062D\u0627\u0644\u0629 ${h.label}`, children: [["on", "\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627"], ["qd", "\u0642\u0636\u0627\u0621"]].map(([v, l]) => /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          "button",
+          {
+            type: "button",
+            className: "mh-pchip",
+            "data-on": pstat[key]?.[h.id] === v || void 0,
+            disabled: !pssaved.ready,
+            onClick: () => setPrayerStatus(h.id, v),
+            children: l
+          },
+          v
+        )) }),
         PHOTO_IDS.has(h.id) && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { className: "mh-cambtn", "aria-label": `\u062A\u0633\u062C\u064A\u0644 ${h.label} \u0628\u0635\u0648\u0631\u0629 \u0627\u0644\u0633\u062C\u0627\u062F\u0629`, title: `\u0633\u062C\u0651\u0644\u064A ${h.label} \u0628\u0635\u0648\u0631\u0629 \u0627\u0644\u0633\u062C\u0627\u062F\u0629`, children: [
           "\u{1F4F7}",
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
@@ -14475,11 +14503,11 @@ Error generating stack: ` + i.message + `
           groupRow({ id: p.id, label: p.label, group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }),
           p.subs.map((s) => groupRow({ id: s.id, label: s.label, group: "\u0627\u0644\u0635\u0644\u0648\u0627\u062A" }, true))
         ] }, p.id)),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u{1F4F7} \u0628\u062C\u0627\u0646\u0628 \u0643\u0644 \u0635\u0644\u0627\u0629: \u0627\u0644\u062A\u0642\u0637\u064A \u0635\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u0644\u0633\u062C\u0627\u062F\u062A\u0643\u0650 \u0648\u0623\u0646\u062A\u0650 \u0639\u0644\u064A\u0647\u0627 \u0641\u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0627\u0644\u0635\u0644\u0627\u0629 \u062A\u0644\u0642\u0627\u0626\u064A\u064B\u0627 \u0645\u0639 \u0648\u0642\u062A\u0647\u0627. \u0627\u0644\u0635\u0648\u0631\u0629 \u0644\u0627 \u062A\u064F\u0631\u0641\u0639 \u0644\u0623\u064A \u0645\u0643\u0627\u0646 \u0648\u0644\u0627 \u062A\u064F\u062A\u062D\u0642\u0642 \u0622\u0644\u064A\u064B\u0627\u060C \u0647\u064A \u0639\u0647\u062F \u0628\u064A\u0646\u0643\u0650 \u0648\u0628\u064A\u0646 \u0646\u0641\u0633\u0643\u0650\u060C \u0648\u0627\u0644\u062A\u0639\u0644\u064A\u0645 \u0627\u0644\u064A\u062F\u0648\u064A \u0645\u062A\u0627\u062D \u062F\u0627\u0626\u0645\u064B\u0627." }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u0628\u062C\u0627\u0646\u0628 \u0643\u0644 \u0641\u0631\u0636 \u0627\u062E\u062A\u0627\u0631\u064A: \xAB\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627\xBB \u0623\u0648 \xAB\u0642\u0636\u0627\u0621\xBB - \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631 \u064A\u0639\u0644\u0651\u0645 \u0627\u0644\u0635\u0644\u0627\u0629 \u0643\u0645\u0635\u0644\u0651\u0627\u0629\u060C \u0648\u0627\u0636\u063A\u0637\u064A \u0627\u0644\u0627\u062E\u062A\u064A\u0627\u0631 \u0646\u0641\u0633\u0647 \u0645\u062C\u062F\u062F\u064B\u0627 \u0644\u0625\u0644\u063A\u0627\u0626\u0647. \u{1F4F7} \u0648\u0628\u0627\u0644\u0635\u0648\u0631\u0629: \u0627\u0644\u062A\u0642\u0637\u064A \u0635\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u0644\u0633\u062C\u0627\u062F\u062A\u0643\u0650 \u0641\u062A\u064F\u0633\u062C\u064E\u0651\u0644 \u0627\u0644\u0635\u0644\u0627\u0629 \u062A\u0644\u0642\u0627\u0626\u064A\u064B\u0627 \xAB\u0639\u0644\u0649 \u0648\u0642\u062A\u0647\u0627\xBB \u0645\u0639 \u0648\u0642\u062A\u0647\u0627. \u0627\u0644\u0635\u0648\u0631\u0629 \u0644\u0627 \u062A\u064F\u0631\u0641\u0639 \u0644\u0623\u064A \u0645\u0643\u0627\u0646 \u0648\u0644\u0627 \u062A\u064F\u062A\u062D\u0642\u0642 \u0622\u0644\u064A\u064B\u0627\u060C \u0647\u064A \u0639\u0647\u062F \u0628\u064A\u0646\u0643\u0650 \u0648\u0628\u064A\u0646 \u0646\u0641\u0633\u0643\u0650\u060C \u0648\u0627\u0644\u062A\u0639\u0644\u064A\u0645 \u0627\u0644\u064A\u062F\u0648\u064A \u0645\u062A\u0627\u062D \u062F\u0627\u0626\u0645\u064B\u0627." }),
         ["\u0627\u0644\u0646\u0648\u0627\u0641\u0644", "\u0627\u0644\u0642\u0631\u0622\u0646", "\u0627\u0644\u0635\u064A\u0627\u0645", "\u0627\u0644\u0623\u0630\u0643\u0627\u0631", "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629"].map((g) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: { "\u0627\u0644\u0646\u0648\u0627\u0641\u0644": "\u0627\u0644\u0646\u0648\u0627\u0641\u0644 \u{1F319}", "\u0627\u0644\u0642\u0631\u0622\u0646": "\u0627\u0644\u0642\u0631\u0622\u0646 \u{1F4D6}", "\u0627\u0644\u0635\u064A\u0627\u0645": "\u0627\u0644\u0635\u064A\u0627\u0645 \u{1F90D}", "\u0627\u0644\u0623\u0630\u0643\u0627\u0631": "\u0627\u0644\u0623\u0630\u0643\u0627\u0631 \u2728", "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629": "\u0627\u0644\u0628\u0631 \u0648\u0627\u0644\u0635\u062F\u0642\u0629 \u{1F338}" }[g] }),
           CHECK_HABITS.filter((h) => h.group === g).map((h) => groupRow(h)),
-          g === "\u0627\u0644\u0642\u0631\u0622\u0646" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ChoiceRow, { label: "\u0647\u062F\u0641 \u0627\u0644\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645\u064A", value: wird, onChange: (v) => wsaved.ready && setWird(v), options: WIRD_OPTS }),
+          g === "\u0627\u0644\u0642\u0631\u0622\u0646" && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WirdCard, {}),
           g === "\u0627\u0644\u0623\u0630\u0643\u0627\u0631" && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-habit", children: [
             /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-name", children: [
               "\u0627\u0644\u0627\u0633\u062A\u063A\u0641\u0627\u0631",
@@ -15326,6 +15354,56 @@ Error generating stack: ` + i.message + `
       ] })
     ] });
   }
+  var JUZ_STARTS = [[1, 1], [2, 142], [2, 253], [3, 93], [4, 24], [4, 148], [5, 82], [6, 111], [7, 88], [8, 41], [9, 93], [11, 6], [12, 53], [15, 1], [17, 1], [18, 75], [21, 1], [23, 1], [25, 21], [27, 56], [29, 46], [33, 31], [36, 28], [39, 32], [41, 47], [46, 1], [51, 31], [58, 1], [67, 1], [78, 1]];
+  var JUZ_ORDINALS = ["\u0627\u0644\u0623\u0648\u0644", "\u0627\u0644\u062B\u0627\u0646\u064A", "\u0627\u0644\u062B\u0627\u0644\u062B", "\u0627\u0644\u0631\u0627\u0628\u0639", "\u0627\u0644\u062E\u0627\u0645\u0633", "\u0627\u0644\u0633\u0627\u062F\u0633", "\u0627\u0644\u0633\u0627\u0628\u0639", "\u0627\u0644\u062B\u0627\u0645\u0646", "\u0627\u0644\u062A\u0627\u0633\u0639", "\u0627\u0644\u0639\u0627\u0634\u0631", "\u0627\u0644\u062D\u0627\u062F\u064A \u0639\u0634\u0631", "\u0627\u0644\u062B\u0627\u0646\u064A \u0639\u0634\u0631", "\u0627\u0644\u062B\u0627\u0644\u062B \u0639\u0634\u0631", "\u0627\u0644\u0631\u0627\u0628\u0639 \u0639\u0634\u0631", "\u0627\u0644\u062E\u0627\u0645\u0633 \u0639\u0634\u0631", "\u0627\u0644\u0633\u0627\u062F\u0633 \u0639\u0634\u0631", "\u0627\u0644\u0633\u0627\u0628\u0639 \u0639\u0634\u0631", "\u0627\u0644\u062B\u0627\u0645\u0646 \u0639\u0634\u0631", "\u0627\u0644\u062A\u0627\u0633\u0639 \u0639\u0634\u0631", "\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062D\u0627\u062F\u064A \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062B\u0627\u0646\u064A \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062B\u0627\u0644\u062B \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u0631\u0627\u0628\u0639 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062E\u0627\u0645\u0633 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u0633\u0627\u062F\u0633 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u0633\u0627\u0628\u0639 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062B\u0627\u0645\u0646 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062A\u0627\u0633\u0639 \u0648\u0627\u0644\u0639\u0634\u0631\u0648\u0646", "\u0627\u0644\u062B\u0644\u0627\u062B\u0648\u0646"];
+  var WIRD_EPOCH = "2026-11-27";
+  var todayJuz = () => {
+    const days = Math.round((Date.parse(cairoParts().d + "T00:00:00Z") - Date.parse(WIRD_EPOCH + "T00:00:00Z")) / 864e5);
+    return (days % 30 + 30) % 30 + 1;
+  };
+  var juzLeft = (n) => n === 1 ? "\u0628\u0642\u064A \u062C\u0632\u0621 \u0648\u0627\u062D\u062F \u0639\u0644\u0649 \u0627\u0644\u062E\u062A\u0645" : n === 2 ? "\u0628\u0642\u064A \u062C\u0632\u0621\u0627\u0646 \u0639\u0644\u0649 \u0627\u0644\u062E\u062A\u0645" : n <= 10 ? `\u0628\u0642\u064A ${ar2(n)} \u0623\u062C\u0632\u0627\u0621 \u0639\u0644\u0649 \u0627\u0644\u062E\u062A\u0645` : `\u0628\u0642\u064A ${ar2(n)} \u062C\u0632\u0621\u064B\u0627 \u0639\u0644\u0649 \u0627\u0644\u062E\u062A\u0645`;
+  var juzSegments = (j3) => {
+    const [ss2, sa2] = JUZ_STARTS[j3 - 1];
+    let es2;
+    let ea;
+    if (j3 === 30) {
+      es2 = 114;
+      ea = QURAN.surahs[113].count;
+    } else {
+      const [ns2, na2] = JUZ_STARTS[j3];
+      if (na2 === 1) {
+        es2 = ns2 - 1;
+        ea = QURAN.surahs[es2 - 1].count;
+      } else {
+        es2 = ns2;
+        ea = na2 - 1;
+      }
+    }
+    const segs = [];
+    for (let s = ss2; s <= es2; s++) segs.push({ s, from: s === ss2 ? sa2 : 1, to: s === es2 ? ea : QURAN.surahs[s - 1].count });
+    return segs;
+  };
+  function WirdCard() {
+    const nav = useNavigate();
+    const tj = todayJuz();
+    const left = 30 - tj;
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-wird", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-wird-info", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("b", { children: [
+          "\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645: \u0627\u0644\u062C\u0632\u0621 ",
+          JUZ_ORDINALS[tj - 1]
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+          ar2(tj),
+          " \u0645\u0646 \u0663\u0660 \u2014 \u064A\u0628\u062F\u0623 \u0645\u0646 \u0633\u0648\u0631\u0629 ",
+          QURAN.surahs[JUZ_STARTS[tj - 1][0] - 1].name,
+          " \u2014 ",
+          left === 0 ? "\u0628\u062E\u062A\u0645\u0647 \u062A\u0643\u062A\u0645\u0644 \u0627\u0644\u062F\u0648\u0631\u0629\u060C \u0648\u063A\u062F\u064B\u0627 \u062F\u0648\u0631\u0629 \u062C\u062F\u064A\u062F\u0629 \u{1F90D}" : juzLeft(left)
+        ] })
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", onClick: () => nav(`/mushaf?juz=${tj}`), children: "\u0627\u0641\u062A\u062D\u064A \u0627\u0644\u0645\u0635\u062D\u0641 \u{1F4D6}" })
+    ] });
+  }
   function normWord(w) {
     return bare(w).replace(/[^\u0621-\u064A]/g, "");
   }
@@ -15382,11 +15460,84 @@ Error generating stack: ` + i.message + `
     const [open, setOpen] = (0, import_react.useState)(null);
     const [q, setQ] = (0, import_react.useState)("");
     const [dlg, setDlg] = (0, import_react.useState)(null);
+    const loc = useLocation();
+    const nav = useNavigate();
+    const juzParam = parseInt(new URLSearchParams(loc.search).get("juz") || "", 10);
+    const juz = juzParam >= 1 && juzParam <= 30 ? juzParam : null;
     const openSurah = (n) => {
       setOpen(n);
       setDlg(null);
+      if (juz != null) nav("/mushaf");
       if (psaved.ready) setPos({ n, name: QURAN.surahs[n - 1].name });
     };
+    const openJuz = (j3) => {
+      setOpen(null);
+      setDlg(null);
+      nav(`/mushaf?juz=${j3}`);
+    };
+    const tj = todayJuz();
+    if (juz != null && open == null) {
+      const left = 30 - juz;
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+          Band,
+          {
+            kicker: "\u0648\u0631\u062F \u0627\u0644\u0642\u0631\u0622\u0646 \u0627\u0644\u064A\u0648\u0645\u064A",
+            title: `\u0627\u0644\u062C\u0632\u0621 ${JUZ_ORDINALS[juz - 1]}`,
+            meta: juz === tj ? left === 0 ? "\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645 \u2014 \u0628\u062E\u062A\u0645\u0647 \u062A\u0643\u062A\u0645\u0644 \u0627\u0644\u062F\u0648\u0631\u0629 \u{1F90D}" : `\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645 \u2014 ${juzLeft(left)}` : `\u0627\u0644\u062C\u0632\u0621 ${ar2(juz)} \u0645\u0646 \u0663\u0660`
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Group, { label: `\u0627\u0644\u062C\u0632\u0621 ${JUZ_ORDINALS[juz - 1]} \u{1F4D6}`, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-juznav", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "secondary", onClick: () => nav("/mushaf"), children: "\u0643\u0644 \u0627\u0644\u0633\u0648\u0631" }),
+            juz > 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "secondary", onClick: () => openJuz(juz - 1), children: "\u0627\u0644\u062C\u0632\u0621 \u0627\u0644\u0633\u0627\u0628\u0642" }),
+            juz < 30 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "secondary", onClick: () => openJuz(juz + 1), children: "\u0627\u0644\u062C\u0632\u0621 \u0627\u0644\u062A\u0627\u0644\u064A" }),
+            juz !== tj && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", onClick: () => openJuz(tj), children: "\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645" })
+          ] }),
+          juzSegments(juz).map((seg) => {
+            const s = QURAN.surahs[seg.s - 1];
+            return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "mh-juzhead", children: [
+                "\uFD3F \u0633\u0648\u0631\u0629 ",
+                s.name,
+                " \uFD3E",
+                seg.from > 1 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("small", { children: [
+                  "\u064A\u0628\u062F\u0623 \u0627\u0644\u062C\u0632\u0621 \u0645\u0646 \u0627\u0644\u0622\u064A\u0629 ",
+                  ar2(seg.from)
+                ] })
+              ] }),
+              seg.from === 1 && seg.s !== 1 && seg.s !== 9 && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-bism", children: QURAN.bismillah }),
+              /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { className: "mh-quran", onClick: (ev) => {
+                const el = ev.target.closest("[data-a]");
+                if (!el) return;
+                const ayah = parseInt(el.dataset.a || "0", 10);
+                const sn = parseInt(el.dataset.s || "0", 10);
+                if (!ayah || !sn) return;
+                if (el.dataset.w != null) setDlg({ kind: "word", surah: sn, ayah, word: el.textContent || "" });
+                else setDlg({ kind: "ayah", surah: sn, ayah });
+              }, children: s.a.slice(seg.from - 1, seg.to).map((t, i) => {
+                const an = seg.from + i;
+                return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { children: [
+                  t.split(" ").map((w, wi, arr) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_react.default.Fragment, { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-w", "data-s": seg.s, "data-a": an, "data-w": wi, children: w }),
+                    wi < arr.length - 1 ? " " : null
+                  ] }, wi)),
+                  " ",
+                  /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-ayahnum", "data-s": seg.s, "data-a": an, title: "\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0622\u064A\u0629", children: [
+                    "\uFD3F",
+                    ar2(an),
+                    "\uFD3E"
+                  ] }),
+                  " "
+                ] }, an);
+              }) })
+            ] }, seg.s);
+          }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Caption, { children: "\u0627\u0636\u063A\u0637\u064A \u0623\u064A \u0643\u0644\u0645\u0629 \u0644\u0645\u0639\u0631\u0641\u0629 \u0645\u0639\u0646\u0627\u0647\u0627\u060C \u0648\u0631\u0642\u0645 \u0627\u0644\u0622\u064A\u0629 \uFD3F\u0660\uFD3E \u0644\u062A\u0641\u0633\u064A\u0631\u0647\u0627. \u062A\u0642\u0633\u064A\u0645 \u0627\u0644\u0623\u062C\u0632\u0627\u0621 \u0647\u0648 \u0627\u0644\u0645\u0639\u062A\u0645\u062F \u0641\u064A \u0645\u0635\u062D\u0641 \u0627\u0644\u0645\u062F\u064A\u0646\u0629." }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(ReaderDialog, { dlg, onClose: () => setDlg(null) })
+        ] })
+      ] });
+    }
     if (open != null) {
       const s = QURAN.surahs[open - 1];
       return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
@@ -15429,6 +15580,13 @@ Error generating stack: ` + i.message + `
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(import_jsx_runtime.Fragment, { children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Band, { kicker: "\u0646\u0648\u0631 \u0639\u0644\u0649 \u0646\u0648\u0631", title: "\u0627\u0644\u0645\u0635\u062D\u0641", meta: "\u0628\u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0627\u0644\u0645\u064A\u0633\u0651\u0631 \u0648\u0645\u0639\u0627\u0646\u064A \u0627\u0644\u063A\u0631\u064A\u0628" }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Group, { label: "\u0627\u0644\u0642\u0631\u0622\u0646 \u0627\u0644\u0643\u0631\u064A\u0645 \u{1F4D6}", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(Callout, { title: `\u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645: \u0627\u0644\u062C\u0632\u0621 ${JUZ_ORDINALS[tj - 1]} \u2014 ${ar2(tj)} \u0645\u0646 \u0663\u0660`, tone: "note", children: [
+          30 - tj === 0 ? "\u0628\u062E\u062A\u0645\u0647 \u0627\u0644\u064A\u0648\u0645 \u062A\u0643\u062A\u0645\u0644 \u0627\u0644\u062F\u0648\u0631\u0629 \u{1F90D}" : juzLeft(30 - tj),
+          ". \u064A\u0628\u062F\u0623 \u0645\u0646 \u0633\u0648\u0631\u0629 ",
+          QURAN.surahs[JUZ_STARTS[tj - 1][0] - 1].name,
+          ".",
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "mh-juznav", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", onClick: () => openJuz(tj), children: "\u0627\u0642\u0631\u0626\u064A \u0648\u0631\u062F \u0627\u0644\u064A\u0648\u0645 \u{1F4D6}" }) })
+        ] }),
         pos && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Callout, { title: `\u0622\u062E\u0631 \u0645\u0648\u0636\u0639 \u0642\u0631\u0627\u0621\u0629: \u0633\u0648\u0631\u0629 ${pos.name}`, tone: "note", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "file-button is-compact", "data-variant": "secondary", onClick: () => openSurah(pos.n), children: "\u0623\u0643\u0645\u0644\u064A \u0627\u0644\u0642\u0631\u0627\u0621\u0629" }) }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsx)(TextField, { label: "\u0627\u0628\u062D\u062B\u064A \u0628\u0627\u0633\u0645 \u0627\u0644\u0633\u0648\u0631\u0629", value: q, onChange: setQ }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [

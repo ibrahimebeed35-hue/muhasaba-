@@ -432,6 +432,35 @@ body {
   gap: 7px;
   flex: none;
 }
+.mh-pstatus {
+  display: inline-flex;
+  gap: 4px;
+}
+.mh-pchip {
+  border: 1.5px solid var(--mh-gold);
+  background: transparent;
+  color: var(--mh-ink);
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-family: "Cairo", sans-serif;
+  font-weight: 700;
+  font-size: 11.5px;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.mh-pchip:active {
+  transform: scale(0.92);
+}
+.mh-pchip[data-on] {
+  background: var(--mh-green);
+  border-color: var(--mh-green);
+  color: var(--mh-cream);
+}
+.mh-pchip:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
 .mh-cambtn {
   display: inline-flex;
   align-items: center;
@@ -998,4 +1027,61 @@ body {
   .mh-counterbox b {
     font-size: 22px;
   }
+}
+.mh-wird {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: rgb(59 42 28 / 0.05);
+  border: 1px solid var(--ds-hairline);
+  border-radius: 14px;
+  padding: 10px 12px;
+  margin-top: 6px;
+}
+.mh-wird-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 200px;
+}
+.mh-wird-info b {
+  font-family:
+    "Aref Ruqaa",
+    "Cairo",
+    serif;
+  font-size: 16px;
+  color: var(--mh-ink);
+}
+.mh-wird-info span {
+  font-family: "Cairo", sans-serif;
+  font-size: 12px;
+  color: var(--ds-ink-2);
+}
+.mh-juzhead {
+  text-align: center;
+  font-family:
+    "Aref Ruqaa",
+    "Cairo",
+    serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--mh-ink);
+  margin: 16px 0 4px;
+}
+.mh-juzhead small {
+  display: block;
+  font-family: "Cairo", sans-serif;
+  font-size: 11.5px;
+  font-weight: 400;
+  color: var(--ds-ink-2);
+}
+.mh-juznav {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+  margin-top: 6px;
 }
