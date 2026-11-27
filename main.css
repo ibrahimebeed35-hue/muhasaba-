@@ -184,66 +184,43 @@ body {
   color: var(--mh-gold);
   font-style: normal;
 }
-.file-nav {
+.mh-tabbar {
+  position: fixed;
+  bottom: 0;
+  inset-inline: 0;
+  z-index: 70;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   background: var(--mh-band);
-  border: none;
-  border-radius: 12px;
-  overflow: hidden;
-  margin: 16px 0 0;
+  border-top: 1px solid rgb(244 236 223 / 0.18);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
-.file-nav a {
+.mh-tabbar a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1px;
-  padding: 12px 8px 10px;
+  gap: 2px;
+  padding: 8px 4px 7px;
   color: var(--mh-cream);
   text-decoration: none;
-  border-inline-start: 1px solid rgb(244 236 223 / 0.14);
 }
-.file-nav a:first-child {
-  border-inline-start: none;
-}
-.file-nav a[aria-current=page] {
+.mh-tabbar a[aria-current=page] {
   background: var(--mh-cream);
   color: var(--mh-ink);
-  box-shadow: none;
 }
-.mh-tile-n {
+.mh-tab-ic {
+  font-size: 17px;
+  line-height: 1.2;
+}
+.mh-tab-t {
   font-family: "Cairo", sans-serif;
   font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  color: var(--mh-gold);
+  font-size: 10.5px;
 }
-.file-nav a[aria-current=page] .mh-tile-n {
-  color: var(--mh-green);
-}
-.mh-tile-t {
-  font-family:
-    "Dancing Script",
-    "Aref Ruqaa",
-    "Cairo",
-    serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.6;
-}
-.mh-tile-d {
-  font-family: "Cairo", sans-serif;
-  font-size: 11px;
-  opacity: 0.62;
+.mh-card {
+  padding-bottom: 74px;
 }
 @media (max-width: 600px) {
-  .file-nav {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .file-nav a {
-    min-height: 0;
-    padding: 10px 8px 9px;
-  }
   .file-nav a:nth-child(3n+1) {
     border-inline-start: none;
   }
@@ -379,7 +356,7 @@ body {
 .mh-cheer {
   position: fixed;
   inset-inline: 14px;
-  bottom: 16px;
+  bottom: 76px;
   z-index: 80;
   display: block;
   width: auto;

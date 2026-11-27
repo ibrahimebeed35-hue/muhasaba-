@@ -15038,7 +15038,7 @@ Error generating stack: ` + i.message + `
     const SHEET_FOR = { adhkar_sabah: "sabah", adhkar_masaa: "masaa", adhkar_nawm: "nawm" };
     const groupRow = (h, sub) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: sub ? "mh-habit mh-sub" : "mh-habit", children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-name", children: [
-        SHEET_FOR[h.id] ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setSheet(SHEET_FOR[h.id]), children: h.label }) : h.id === "wird_mutlaq" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setMutlaqOpen(true), children: h.label }) : h.id === "wird_hurr" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setFreeOpen(true), children: h.label }) : h.id === "wird_tafsir" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setTafsirOpen(true), children: h.label }) : h.label,
+        SHEET_FOR[h.id] ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setSheet(SHEET_FOR[h.id]), children: h.label }) : h.id === "wird_mutlaq" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setMutlaqOpen(true), children: h.label }) : h.id === "wird_hurr" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setFreeOpen(true), children: h.label }) : h.id === "wird_tafsir" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => setTafsirOpen(true), children: h.label }) : h.id === "s_mulk" ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-openlist", onClick: () => nav("/mushaf?surah=67"), children: h.label }) : h.label,
         (h.hint || HINT[h.id]) && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-habit-hint", children: h.hint || HINT[h.id] }),
         SHEET_FOR[h.id] && adhkarSetDone(SHEET_FOR[h.id]) > 0 && /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-hint", children: [
           "\u0639\u062F\u0651 \u0627\u0644\u064A\u0648\u0645: \u0623\u062A\u0645\u0645\u062A\u0650 ",
@@ -16375,6 +16375,15 @@ Error generating stack: ` + i.message + `
     const nav = useNavigate();
     const juzParam = parseInt(new URLSearchParams(loc.search).get("juz") || "", 10);
     const juz = juzParam >= 1 && juzParam <= 30 ? juzParam : null;
+    const surahParam = parseInt(new URLSearchParams(loc.search).get("surah") || "", 10);
+    (0, import_react.useEffect)(() => {
+      if (surahParam >= 1 && surahParam <= 114 && open == null && juz == null) {
+        setOpen(surahParam);
+        setDlg(null);
+        if (psaved.ready) setPos({ n: surahParam, name: QURAN.surahs[surahParam - 1].name });
+        nav("/mushaf");
+      }
+    }, [surahParam]);
     const openSurah = (n) => {
       setOpen(n);
       setDlg(null);
@@ -16985,19 +16994,18 @@ Error generating stack: ` + i.message + `
     ] });
   }
   var SECTIONS = [
-    { to: "/", end: true, n: "\u0660\u0661", t: "\u0627\u0644\u064A\u0648\u0645", d: "\u0639\u0628\u0627\u062F\u0627\u062A\u0643\u0650 \u0648\u0645\u062D\u0627\u0633\u0628\u062A\u0643\u0650" },
-    { to: "/stats", end: false, n: "\u0660\u0662", t: "\u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0629", d: "\u0623\u0633\u0628\u0648\u0639\u0643\u0650 \u0648\u0634\u0647\u0631\u0643\u0650 \u0648\u0633\u0646\u062A\u0643\u0650" },
-    { to: "/tasbeeh", end: false, n: "\u0660\u0663", t: "\u0627\u0644\u0633\u064F\u0651\u0628\u062D\u0629", d: "\u0645\u0633\u0628\u062D\u0629 \u0645\u0646 \u062E\u0631\u0632" },
-    { to: "/mushaf", end: false, n: "\u0660\u0664", t: "\u0627\u0644\u0645\u0635\u062D\u0641", d: "\u0628\u0627\u0644\u062A\u0641\u0633\u064A\u0631 \u0648\u0627\u0644\u0645\u0639\u0627\u0646\u064A" },
-    { to: "/reports", end: false, n: "\u0660\u0665", t: "\u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631", d: "\u064A\u0648\u0645\u0643\u0650 \u0648\u0623\u0633\u0628\u0648\u0639\u0643\u0650 \u0648\u0634\u0647\u0631\u0643\u0650 \u0648\u0633\u0646\u062A\u0643\u0650 PDF" }
+    { to: "/", end: true, ic: "\u2600\uFE0F", t: "\u0627\u0644\u064A\u0648\u0645" },
+    { to: "/stats", end: false, ic: "\u{1F4CA}", t: "\u0627\u0644\u0645\u062A\u0627\u0628\u0639\u0629" },
+    { to: "/tasbeeh", end: false, ic: "\u{1F4FF}", t: "\u0627\u0644\u0633\u064F\u0651\u0628\u062D\u0629" },
+    { to: "/mushaf", end: false, ic: "\u{1F4D6}", t: "\u0627\u0644\u0645\u0635\u062D\u0641" },
+    { to: "/reports", end: false, ic: "\u{1F9FE}", t: "\u0627\u0644\u062A\u0642\u0627\u0631\u064A\u0631" }
   ];
   function App() {
     return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(FileCard, { lang: "ar", dir: "rtl", className: "mh-card", style: { backgroundColor: "#C7A87B", backgroundImage: `url(${kraft_default})`, backgroundSize: "320px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Hero, {}),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "file-nav", "aria-label": "\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u0635\u0641\u062D\u0629", children: SECTIONS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(NavLink, { to: s.to, end: s.end, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-tile-n", children: s.n }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-tile-t", children: s.t }),
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-tile-d", children: s.d })
+      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("nav", { className: "mh-tabbar", "aria-label": "\u0623\u0642\u0633\u0627\u0645 \u0627\u0644\u062A\u0637\u0628\u064A\u0642", children: SECTIONS.map((s) => /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(NavLink, { to: s.to, end: s.end, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-tab-ic", "aria-hidden": true, children: s.ic }),
+        /* @__PURE__ */ (0, import_jsx_runtime.jsx)("span", { className: "mh-tab-t", children: s.t })
       ] }, s.to)) }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
         Header,
