@@ -263,6 +263,12 @@ body {
   cursor: pointer;
   padding: 6px;
 }
+.mh-tododel[data-confirm] {
+  background: var(--mh-terra);
+  color: #f7ead2;
+  border-radius: 9px;
+  padding: 6px 10px;
+}
 .mh-habit-name[data-done] {
   text-decoration: line-through;
   opacity: 0.55;

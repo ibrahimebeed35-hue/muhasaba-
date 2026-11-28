@@ -15369,13 +15369,24 @@ Error generating stack: ` + i.message + `
     const [draft, setDraft] = (0, import_react.useState)("");
     const [cheer, setCheer] = (0, import_react.useState)(null);
     const [noteIdx, setNoteIdx] = (0, import_react.useState)(null);
+    const [confirmDel, setConfirmDel] = (0, import_react.useState)(null);
     (0, import_react.useEffect)(() => {
       if (!cheer) return;
       const t = setTimeout(() => setCheer(null), 4500);
       return () => clearTimeout(t);
     }, [cheer]);
     (0, import_react.useEffect)(() => {
-      if (!saved.ready) return;
+      setConfirmDel(null);
+      setNoteIdx(null);
+    }, [day]);
+    (0, import_react.useEffect)(() => {
+      if (confirmDel == null) return;
+      const t = setTimeout(() => setConfirmDel(null), 4e3);
+      return () => clearTimeout(t);
+    }, [confirmDel]);
+    const [fix, setFix, fixSaved] = useLocalState("mh-todofix.v1", {});
+    (0, import_react.useEffect)(() => {
+      if (!saved.ready || !fixSaved.ready) return;
       const raw = lists;
       if (!raw || typeof raw !== "object") return;
       const clean = {};
@@ -15396,10 +15407,20 @@ Error generating stack: ` + i.message + `
           if (it2) orphan.push(it2);
         }
       });
-      if (!stray) return;
-      if (orphan.length > 0) clean[today] = [...clean[today] || [], ...orphan];
-      setLists(clean);
-    }, [saved.ready]);
+      if (stray) {
+        if (orphan.length > 0) clean[today] = [...clean[today] || [], ...orphan];
+        setLists(clean);
+        if (!fix.v14) setFix({ v14: "1" });
+        return;
+      }
+      if (fix.v14) return;
+      setFix({ v14: "1" });
+      const src = lists["2026-11-28"] || [];
+      if (src.length === 0) return;
+      const next = { ...lists, "2026-11-27": [...lists["2026-11-27"] || [], ...src] };
+      delete next["2026-11-28"];
+      setLists(next);
+    }, [saved.ready, fixSaved.ready]);
     const viewD = /* @__PURE__ */ new Date(day + "T12:00:00");
     const items = lists[day] || [];
     const write = (next) => {
@@ -15446,7 +15467,22 @@ Error generating stack: ` + i.message + `
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("span", { className: "mh-habit-actions", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-tododel", "aria-label": `\u0627\u062D\u0630\u0641\u064A: ${it2.t}`, onClick: () => write(items.filter((_, j3) => j3 !== i)), children: "\u2715" }),
+          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+            "button",
+            {
+              type: "button",
+              className: "mh-tododel",
+              "data-confirm": confirmDel === i || void 0,
+              "aria-label": `\u0627\u062D\u0630\u0641\u064A: ${it2.t}`,
+              onClick: () => {
+                if (confirmDel === i) {
+                  setConfirmDel(null);
+                  write(items.filter((_, j3) => j3 !== i));
+                } else setConfirmDel(i);
+              },
+              children: confirmDel === i ? "\u0645\u062A\u0623\u0643\u062F\u0629\u061F \u0627\u062D\u0630\u0641\u064A" : "\u{1F5D1} \u062D\u0630\u0641"
+            }
+          ),
           /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Tick, { value: it2.missed ? 2 : it2.done ? 1 : 0, label: it2.t, onTap: () => {
             const cur = it2.missed ? 2 : it2.done ? 1 : 0;
             const next = (cur + 1) % 3;
@@ -15465,7 +15501,7 @@ Error generating stack: ` + i.message + `
         " ",
         day === today ? "\u0627\u0644\u064A\u0648\u0645" : "\u0641\u064A \u0647\u0630\u0627 \u0627\u0644\u064A\u0648\u0645",
         doneCount === items.length ? " \u2014 \u0645\u0627 \u0634\u0627\u0621 \u0627\u0644\u0644\u0647\u060C \u0627\u0643\u062A\u0645\u0644 \u0627\u0644\u064A\u0648\u0645 \u{1F90D}" : "",
-        ". \u0639\u0644\u0651\u0645\u064A \u2713 \u0644\u0645\u0627 \u0623\u0646\u062C\u0632\u062A\u0650\u060C \u0648\u2717 \u0644\u0645\u0627 \u0641\u0627\u062A \u0645\u0639 \u0630\u0643\u0631 \u0627\u0644\u0633\u0628\u0628 \u0628\u0631\u0641\u0642 \u0625\u0646 \u0623\u062D\u0628\u0628\u062A\u0650. \u0642\u0627\u0626\u0645\u0629 \u0643\u0644 \u064A\u0648\u0645 \u062A\u064F\u062D\u0641\u0638 \u0639\u0644\u0649 \u062C\u0647\u0627\u0632\u0643\u0650 \u0628\u062A\u0627\u0631\u064A\u062E\u0647\u0627."
+        ". \u0639\u0644\u0651\u0645\u064A \u2713 \u0644\u0645\u0627 \u0623\u0646\u062C\u0632\u062A\u0650\u060C \u0648\u2717 \u0644\u0645\u0627 \u0641\u0627\u062A \u0645\u0639 \u0630\u0643\u0631 \u0627\u0644\u0633\u0628\u0628 \u0628\u0631\u0641\u0642 \u0625\u0646 \u0623\u062D\u0628\u0628\u062A\u0650. \u0648\u0632\u0631 \xAB\u062D\u0630\u0641\xBB \u064A\u0632\u064A\u0644 \u0627\u0644\u0645\u0647\u0645\u0629 \u0646\u0647\u0627\u0626\u064A\u064B\u0627 \u0628\u0639\u062F \u0636\u063A\u0637\u0629 \u062A\u0623\u0643\u064A\u062F. \u0642\u0627\u0626\u0645\u0629 \u0643\u0644 \u064A\u0648\u0645 \u062A\u064F\u062D\u0641\u0638 \u0639\u0644\u0649 \u062C\u0647\u0627\u0632\u0643\u0650 \u0628\u062A\u0627\u0631\u064A\u062E\u0647\u0627."
       ] }),
       cheer && /* @__PURE__ */ (0, import_jsx_runtime.jsx)("button", { type: "button", className: "mh-cheer", onClick: () => setCheer(null), children: cheer }),
       /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
